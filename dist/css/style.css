@@ -1,22 +1,54 @@
 .bg-ask {
   background-color: #4DEBDF; }
 
+.bg-ask-light {
+  background-color: rgba(77, 235, 223, 0.25); }
+
+.bg-ask-gradient-to-transparent {
+  background: linear-gradient(to bottom, rgba(77, 235, 223, 0.25), rgba(77, 235, 223, 0)); }
+
+.header-center {
+  text-align: center; }
+
+.header-block {
+  padding: 0.333333em 0; }
+
+.header-block-tall {
+  padding: 1em 0; }
+
+.list-naked {
+  padding: 0;
+  margin: 0;
+  list-style: none; }
+
 section {
   width: 100%; }
   section#cover {
     height: 0;
     padding-bottom: 50%;
+    background-color: rgba(0, 0, 0, 0.04);
     background-size: cover;
     background-position: "center center"; }
+  section#live {
+    max-width: 60rem;
+    margin: 0 auto; }
 
 .player {
-  width: 100%;
-  height: 0%;
-  padding-bottom: 56.25%;
-  background-color: rgba(0, 0, 0, 0.04); }
+  background-color: rgba(0, 0, 0, 0.04);
+  background-size: cover;
+  background-position: "center center"; }
+  .player .embed-responsive-item {
+    background-size: contain; }
 
 .pgroup {
   width: 18rem;
   margin: 0 auto; }
+
+label.status {
+  font-family: "Space Mono", monospace;
+  font-weight: bold;
+  font-size: 1.5rem; }
+  label.status.live {
+    background-color: rgba(255, 83, 104, 0.25); }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,27 +1,64 @@
 $color-ask: #4DEBDF;
+$color-musou: #FF5368;
 $color-placeholder: rgba(0, 0, 0, 0.04);
+
+@mixin placeholder {
+  background-color: $color-placeholder;
+  background-size: cover;
+  background-position: "center center";
+}
 
 .bg-ask {
   background-color: $color-ask;
+}
+.bg-ask-light {
+  background-color: rgba($color-ask, 0.25);
+}
+.bg-ask-gradient-to-transparent {
+  background: linear-gradient(to bottom, rgba($color-ask, 0.25), rgba($color-ask, 0));
+}
+.header-center {
+  text-align: center;
+}
+.header-block {
+  padding: 0.333333em 0;
+}
+.header-block-tall {
+  padding: 1em 0;
+}
+.list-naked {
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }
 section {
   width: 100%;
   &#cover {
     height: 0;
     padding-bottom: 50%;
-    background-size: cover;
-    background-position: "center center";
+    @include placeholder;
   }
   &#live {
+    max-width: 60rem;
+    margin: 0 auto;
   }
 }
 .player {
-  width: 100%;
-  height: 0%;
-  padding-bottom: 9/16*100%;
-  background-color: $color-placeholder;
+  @include placeholder;
+  .embed-responsive-item {
+    background-size: contain;
+  }
 }
 .pgroup {
   width: 18rem;
   margin: 0 auto;
+}
+label.status {
+  font-family: "Space Mono", monospace;
+  font-weight: bold;
+  font-size: 1.5rem;
+
+  &.live {
+    background-color: rgba($color-musou, 0.25);
+  }
 }

@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Space+Mono">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="./dist/css/style.css">
   <link rel="icon" href="./asset/favicon.png">
@@ -14,18 +15,52 @@
     </nav>
     <section id="cover" :title="cover.title" :style="cover.styles"></section>
     <section id="live">
-      <div class="player"></div>
+      <label class="status live">{{ status }}</label>
+      <div class="player">
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" :style="live.styles.player"></iframe>
+        </div>
+      </div>
+      <div class="info">
+        <h2 class="title">{{ live.title }}</h2>
+        <div class="partners">
+          <ul class="list-unstyled"><label>合作夥伴</label>
+            <li v-for="partner in live.partners">{{ partner.name }}</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section id="next" class="bg-ask-light">
+      <label class="status next">NEXT</label>
+      <div class="info">
+        <h2 class="title">{{ next.title }}</h2>
+        <time :datetime="live.date">{{ next.date }}</time>
+        <time :datetime="live.start">{{ next.start }}</time>
+        <time :datetime="live.end">{{ next.end }}</time>
+        <div class="pgroup">
+          {{ next.description }}
+        </div>
+        <div class="partners">
+          <ul class="list-naked"><label>合作夥伴</label>
+            <li v-for="partner in next.partners">{{ partner.name }}</li>
+          </ul>
+        </div>
+      </div>
     </section>
     <section id="intro">
-      <h2>{{ intro.title }}</h2>
+      <h2 class="header-block-tall header-center bg-ask-gradient-to-transparent">{{ intro.title }}</h2>
       <div class="pgroup">
         {{ intro.content }}
       </div>
     </section>
     <section id="history">
-      <h2>{{ history.title }}</h2>
-      <ul>
-        <li v-for="event in history.content.events">{{ event.title }}</li>
+      <h2 class="header-block header-center bg-ask-light">{{ history.title }}</h2>
+      <ul class="list-naked">
+        <event
+          v-for="(event, index) in history.events"
+          :key="event.title"
+          :e="event"
+        ></event>
       </ul>
     </section>
   </div>
