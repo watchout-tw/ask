@@ -1,0 +1,23 @@
+$color-ask: #4DEBDF;
+$color-placeholder: rgba(0, 0, 0, 0.04);
+
+.bg-ask {
+  background-color: $color-ask;
+}
+section {
+  width: 100%;
+  &#cover {
+    height: 0;
+    padding-bottom: 50%;
+    background-size: cover;
+    background-position: "center center";
+  }
+  &#live {
+  }
+}
+.player {
+  width: 100%;
+  height: 0%;
+  padding-bottom: 9/16*100%;
+  background-color: $color-placeholder;
+}

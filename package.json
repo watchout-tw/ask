@@ -1,0 +1,19 @@
+{
+    "name": "ask.watchout.tw",
+    "version": "0.0.1",
+    "description": "ask",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/watchout-tw/ask.watchout.tw"
+    },
+    "license": "MIT",
+    "author": {
+        "name": "Watchout"
+    },
+    "dependencies": {
+        "bootstrap": "^4.0.0",
+        "font-awesome": "^4.7.0",
+        "jquery": "^3.1.1",
+        "vue": "^2.2.4"
+    }
+}
