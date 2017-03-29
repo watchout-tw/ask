@@ -1,11 +1,21 @@
 $color-ask: #4DEBDF;
 $color-musou: #FF5368;
 $color-placeholder: rgba(0, 0, 0, 0.04);
+$color-shadow: rgba(0, 0, 0, 0.25);
+
+$font-size-small: 0.875rem;
 
 @mixin placeholder {
   background-color: $color-placeholder;
   background-size: cover;
   background-position: "center center";
+}
+@mixin monospace {
+  font-family: "Space Mono", monospace;
+}
+
+label {
+  margin: 0;
 }
 
 .bg-ask {
@@ -33,12 +43,23 @@ $color-placeholder: rgba(0, 0, 0, 0.04);
 }
 section {
   width: 100%;
+  > label {
+    @include monospace;
+    font-weight: bold;
+    font-size: 1.5rem;
+    display: block;
+    text-align: center;
+
+    &.live {
+      background-color: rgba($color-musou, 0.25);
+    }
+  }
   &#cover {
     height: 0;
     padding-bottom: 50%;
     @include placeholder;
   }
-  &#live {
+  &#now {
     max-width: 60rem;
     margin: 0 auto;
   }
@@ -51,14 +72,48 @@ section {
 }
 .pgroup {
   width: 18rem;
+}
+.pgroup-center {
   margin: 0 auto;
 }
-label.status {
-  font-family: "Space Mono", monospace;
-  font-weight: bold;
-  font-size: 1.5rem;
-
-  &.live {
-    background-color: rgba($color-musou, 0.25);
+.partners > ul {
+  > label {
+    font-size: $font-size-small;
+    font-weight: 500;
   }
+}
+.guests {
+  margin: 0 -0.5rem;
+}
+.guest {
+  position: relative;
+  margin: 0 0.5rem;
+  > .photo {
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    background: $color-placeholder;
+  }
+  > .name, > .job {
+    display: block;
+  }
+  > .job {
+    font-size: $font-size-small;
+    font-weight: 500;
+  }
+
+  &.signup {
+    > .photo {
+      background-color: $color-ask;
+      background-image: url(../../asset/+1.png);
+      background-size: contain;
+      background-position: "center center";
+      box-shadow: 0px 2px 6px $color-shadow;
+    }
+  }
+}
+
+.container-960 {
+  max-width: 960px;
+  box-sizing: content-box;
 }

@@ -1,38 +1,47 @@
 var events = {
-  live: Factory.event(),
+  now: Factory.event(),
   next: Factory.event(),
   history: [
-    Factory.event(), Factory.event()
+    Factory.event(),
+    Factory.event(),
+    Factory.event(),
+    Factory.event(),
   ],
 };
 for(var e of events.history) {
   e.tag = 'li';
 }
 
-Vue.component('event', {
+Vue.component('guest', {
   template: `
-  <li class="event">
-    <h3>{{ e.title }}</h3>
-    <time :datetime="e.date">{{ e.date }}</time>
-    <time :datetime="e.start">{{ e.start }}</time>
-    <time :datetime="e.end">{{ e.end }}</time>
-    <div class="pgroup">
-      {{ e.description }}
-    </div>
-    <div class="partners">
-      <ul class="list-naked"><label>合作夥伴</label>
-        <li v-for="partner in e.partners">{{ partner.name }}</li>
-      </ul>
-    </div>
-  </li>`,
+  <li class="guest d-inline-block align-top">
+    <div class="photo"></div>
+    <label class="name">{{ g.name }}</label>
+    <label class="job">{{ g.job }}</label>
+  </li>
+  `,
   props: {
-    e: {
+    g: {
       type: Object,
-      validator: function(value) {
+      validator: function(data) {
         return true;
       }
     }
-  },
+  }
+});
+
+Vue.component('partner', {
+    template: `
+    <li>{{ p.name }}</li>
+    `,
+    props: {
+      p: {
+        type: Object,
+        validator: function(data) {
+          return true;
+        }
+      }
+    }
 });
 
 var app = new Vue({
@@ -46,7 +55,7 @@ var app = new Vue({
           backgroundImage: 'url(asset/key_visual.png)',
       }
     },
-    live: events.live,
+    now: events.now,
     next: events.next,
     intro: {
       title: '什麼是給問？',
