@@ -11,14 +11,13 @@
 <body>
   <div id="app">
     <nav class="navbar sticky-top navbar-light bg-ask">
-      <a class="navbar-brand" href="#">Sticky top</a>
+      <a class="navbar-brand" href="https://ask.watchout.tw/"><img src="./asset/logo+type.png" class="logo-type"/></a>
     </nav>
     <section id="cover" :title="cover.title" :style="cover.styles"></section>
-    <section id="status">
-      <div class="circle"></div>
-      <label class="live">{{ status }}</label>
-    </section>
     <section id="now">
+      <div class="label bg-musou-light" :status="status">
+        <div class="bulb d-inline-block"></div><label class="">{{ status }}</label>
+      </div>
       <div class="player">
         <div class="embed-responsive embed-responsive-16by9">
           <iframe class="embed-responsive-item" :style="now.styles.player"></iframe>
@@ -34,7 +33,9 @@
       </div>
     </section>
     <section id="next" class="bg-ask-light">
-      <label class="next bg-ask-light">NEXT</label>
+      <div class="label bg-ask-light">
+        <label>NEXT</label>
+      </div>
       <div class="container-fluid container-960">
         <div class="row">
           <div class="col col-md-4 info">

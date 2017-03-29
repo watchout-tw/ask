@@ -10,6 +10,9 @@ label {
 .bg-ask-gradient-to-transparent {
   background: linear-gradient(to bottom, rgba(77, 235, 223, 0.25), rgba(77, 235, 223, 0)); }
 
+.bg-musou-light {
+  background-color: rgba(255, 83, 104, 0.25); }
+
 .header-center {
   text-align: center; }
 
@@ -26,14 +29,23 @@ label {
 
 section {
   width: 100%; }
-  section > label {
+  section > .label {
     font-family: "Space Mono", monospace;
+    height: 3rem;
+    margin: 0;
+    padding: 0;
     font-weight: bold;
     font-size: 1.5rem;
+    line-height: 3rem;
     display: block;
     text-align: center; }
-    section > label.live {
-      background-color: rgba(255, 83, 104, 0.25); }
+    section > .label > .bulb {
+      width: 1rem;
+      height: 1rem;
+      border-radius: 50%;
+      border: 2px solid #FF5368; }
+    section > .label[status="LIVE"] > .bulb {
+      background: #FF5368; }
   section#cover {
     height: 0;
     padding-bottom: 50%;
@@ -87,5 +99,13 @@ section {
 .container-960 {
   max-width: 960px;
   box-sizing: content-box; }
+
+.navbar, .navbar-brand {
+  padding: 0; }
+
+.logo-type {
+  display: block;
+  width: 212px;
+  height: auto; }
 
 /*# sourceMappingURL=style.css.map */
