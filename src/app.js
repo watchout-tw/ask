@@ -48,7 +48,7 @@ var app = new Vue({
   el: '#app',
   data: {
     generatedAt: new Date(),
-    status: 'LIVE',
+    status: 'SOON',
     cover: {
       title: '沃草給問擂台',
       styles: {

@@ -39,13 +39,24 @@ section {
     line-height: 3rem;
     display: block;
     text-align: center; }
-    section > .label > .bulb {
-      width: 1rem;
-      height: 1rem;
-      border-radius: 50%;
-      border: 2px solid #FF5368; }
-    section > .label[status="LIVE"] > .bulb {
+    section > .label > .lightbulb {
+      position: relative;
+      width: 1.5rem;
+      height: 3rem;
+      margin-right: 0.25rem; }
+      section > .label > .lightbulb > .bulb {
+        position: absolute;
+        width: 1.5rem;
+        height: 1.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+        border-radius: 50%;
+        border: 2px #FF5368 solid; }
+    section > .label[status="LIVE"] > .lightbulb > .bulb {
       background: #FF5368; }
+    section > .label[status="SOON"] > .lightbulb > .bulb {
+      border: 4px #FF5368 solid; }
   section#cover {
     height: 0;
     padding-bottom: 50%;

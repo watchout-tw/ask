@@ -57,19 +57,32 @@ section {
     display: block;
     text-align: center;
 
-    > .bulb {
-      width: 1rem;
-      height: 1rem;
-      border-radius: 50%;
-      border: 2px solid $color-musou;
+    > .lightbulb {
+      position: relative;
+      width: 1.5rem;
+      height: 3rem;
+      margin-right: 0.25rem;
+
+      > .bulb {
+        position: absolute;
+        width: 1.5rem;
+        height: 1.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+        border-radius: 50%;
+        border: 2px $color-musou solid;
+      }
     }
 
     &[status="LIVE"] {
-      > .bulb {
+      > .lightbulb > .bulb {
         background: $color-musou;
       }
-      > label {
-
+    }
+    &[status="SOON"] {
+      > .lightbulb > .bulb {
+        border: 4px $color-musou solid;
       }
     }
   }
