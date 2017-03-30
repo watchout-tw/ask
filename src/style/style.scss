@@ -10,19 +10,15 @@ $font-size-small: 0.875rem;
   background-size: cover;
   background-position: "center center";
 }
-@mixin monospace {
+@mixin font-monospace {
   font-family: "Space Mono", monospace;
 }
 
 label {
   margin: 0;
 }
-a {
+a, a:hover {
   color: blue;
-}
-a:hover {
-  color: blue;
-  border-bottom: 1px blue solid;
 }
 
 .bg-ask {
@@ -41,6 +37,7 @@ a:hover {
   text-align: center;
 }
 .header-block {
+  margin: 0;
   padding: 0.333333em 0;
 }
 .header-block-tall {
@@ -54,7 +51,7 @@ a:hover {
 section {
   width: 100%;
   > .label {
-    @include monospace;
+    @include font-monospace;
     height: 3rem;
     margin: 0;
     padding: 0;
@@ -121,25 +118,30 @@ section {
     font-weight: 500;
   }
 }
-.guests {
-  margin: 0 -0.5rem; // compensating the left+right margin of .guest
-  &[nofg="1"] {
-    .guest > .photo {
-      width: 11rem;
-      height: 11rem;
+.date {
+  @include font-monospace;
+  > .date-separator {
+    color: $color-ask;
+  }
+
+  &.date-large {
+    font-size: 1.5rem;
+    line-height: 1.875rem;
+    > .date-separator {
+      font-size: 1rem;
+      line-height: 1.875rem;
     }
   }
-  &[nofg="2"] {
-    .guest > .photo {
-      width: 6rem;
-      height: 6rem;
-    }
-  }
-  &[nofg="3"], &[nofg="4"], &[nofg="5"], &[nofg="6"] {
-    .guest > .photo {
-      width: 5rem;
-      height: 5rem;
-    }
+}
+.time-period {
+  @include font-monospace;
+  font-size: 1.5rem;
+  line-height: 1.875rem;
+}
+.event {
+  position: relative;
+  .guests {
+    margin: 0 -0.5rem; // compensating the left+right margin of .guest
   }
 }
 .guest {
@@ -170,6 +172,75 @@ section {
   }
 }
 
+.event-in-list {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  .title {
+    margin: 0;
+  }
+  .guests {
+    text-align: right;
+  }
+  .guest {
+    margin: 0.25rem 0.5rem;
+  }
+  .name {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    font-size: $font-size-small;
+    text-align: right;
+  }
+  .job {
+    display: none;
+  }
+  .links {
+    > .link {
+      margin-right: 0.5rem;
+      > .logo-small, > .icon-small, > span {
+        display: inline-block;
+        vertical-align: top;
+      }
+      > .logo-small, > .icon-small {
+        margin-right: 0.25rem;
+      }
+    }
+  }
+  &[g="1"], &[g="2"], &[g="4"], &[g="5"] {
+    .links {
+      position: absolute;
+      bottom: 0;
+      > .link {
+        display: block;
+      }
+    }
+  }
+  &[g="1"] {
+    padding-top: 1.5rem;
+    .info {
+      position: absolute;
+      top: 0;
+    }
+    .guest {
+      > .photo {
+        width: 11rem;
+        height: 11rem;
+      }
+    }
+  }
+  &[g="2"] {
+    .guest > .photo {
+      width: 6rem;
+      height: 6rem;
+    }
+  }
+  &[g="3"], &[g="4"], &[g="5"], &[g="6"] {
+    .guest > .photo {
+      width: 5rem;
+      height: 5rem;
+    }
+  }
+}
 
 .container-960 {
   max-width: 960px;
@@ -205,9 +276,9 @@ section {
   }
 }
 
-.links > a {
-  > .logo-small, > .icon-small, > span {
-    display: inline-block;
-    vertical-align: top;
+.avoid-weird-space {
+  font-size: 0;
+  > * {
+    font-size: 1rem;
   }
 }

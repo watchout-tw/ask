@@ -41,6 +41,45 @@ Vue.component('partner', {
   `,
 });
 
+Vue.component('date', {
+  props: {
+    dateString: String,
+  },
+  computed: {
+    dateArray: function() {
+      var digit = this.dateString.split('-').map(function(d) { return parseInt(d); });
+      return { y: digit[0], m: digit[1], d: digit[2] };
+    },
+  },
+  template: `
+  <time class="date" :datetime="dateString"><span>{{ dateArray.y }}</span><span class="date-separator">/</span><span>{{ dateArray.m }}</span><span class="date-separator">/</span><span>{{ dateArray.d }}</span></time>
+  `,
+});
+Vue.component('time-period', {
+  props: {
+    start: String,
+    end: String,
+  },
+  computed: {
+    timeString: function() {
+      return this.start + '-' + this.end;
+    },
+    humanFriendlyString: function() {
+      start = this.start.split(':').map(function(d) { return parseInt(d); });
+      end = this.end.split(':').map(function(d) { return parseInt(d); });
+      start = { h: start[0] - (start[0] > 12 ? 12 : 0), m: start[1], pm: start[0] >= 12 };
+      end = { h: end[0] - (end[0] > 12 ? 12 : 0), m: end[1], pm: end[0] >= 12 };
+      return (
+        start.h + (start.m > 0 ? ':' + (start.m < 10 ? '0' : '') + start.m : '') + (start.pm != end.pm ? (start.pm ? 'pm' : 'am') : '') + '-' +
+        end.h + (end.m > 0 ? ':' + (end.m < 10 ? '0' : '') + end.m : '') + (end.pm ? 'pm' : 'am')
+      );
+    }
+  },
+  template: `
+  <time class="time-period" :datetime="timeString">{{ humanFriendlyString }}</time>
+  `,
+});
+
 var mxEvent = {
   props: {
     e: {
@@ -73,10 +112,9 @@ Vue.component('event-with-player', {
       </div>
     </div>
     <div class="info">
-      <time :datetime="e.date">{{ e.date }}</time>
-      <time :datetime="e.start">{{ e.start }}</time>
-      <time :datetime="e.end">{{ e.end }}</time>
-      <h3>{{ e.title }}</h3>
+      <date :dateString="e.date" class="date-large"></date>
+      <time-period :start="e.start" :end="e.end"></time-period>
+      <h3 class="title">{{ e.title }}</h3>
     </div>
     <div v-if="e.partners.length > 0" class="partners">
       <ul class="list list-naked"><label>合作夥伴</label>
@@ -86,18 +124,18 @@ Vue.component('event-with-player', {
   </div>
   `,
 });
-
 Vue.component('event-wide', {
   mixins: [mxEvent],
   template: `
   <div class="event event-wide container-fluid container-960">
     <div class="row">
-      <div class="col col-md-4 info">
-        <h2 class="title">{{ e.title }}</h2>
-        <time :datetime="e.date">{{ e.date }}</time>
-        <time :datetime="e.start">{{ e.start }}</time>
-        <time :datetime="e.end">{{ e.end }}</time>
-        <div class="pgroup">
+      <div class="col-lg-4">
+        <div class="info">
+          <h2 class="title">{{ e.title }}</h2>
+          <date :dateString="e.date" class="date-large"></date>
+          <time-period :start="e.start" :end="e.end"></time-period>
+        </div>
+        <div class="description pgroup">
           {{ e.description }}
         </div>
         <div v-if="e.partners.length > 0" class="partners">
@@ -106,7 +144,7 @@ Vue.component('event-wide', {
           </ul>
         </div>
       </div>
-      <div class="col">
+      <div class="col-lg-8">
         <div class="guests">
           <ul class="list list-naked">
             <guest v-for="g in e.guests" :key="g.name" :g="g"></guest><a class="guest d-inline-block align-top signup" :href="e.signup" target="signup"><div class="photo"></div></a>
@@ -117,22 +155,23 @@ Vue.component('event-wide', {
   </div>
   `,
 });
-
 Vue.component('event-in-list', {
   mixins: [mxEvent],
   template: `
-  <div class="event event-in-list">
-    <time :datetime="e.date">{{ e.date }}</time>
-    <h3>{{ e.title }}</h3>
-    <div class="guests" :nofg="e.guests.length">
+  <div class="event event-in-list" :g="e.guests.length">
+    <div class="info">
+      <date :dateString="e.date"></date>
+      <h3 class="title">{{ e.title }}</h3>
+    </div>
+    <div class="guests">
       <ul class="list list-naked">
         <guest v-for="g in e.guests" :key="g.name" :g="g"></guest>
       </ul>
     </div>
     <div class="links">
-      <a v-if="e.livestream" :href="e.livestream"><div class="logo logo-small woo"></div><span>直播</span></a>
-      <a v-if="e.report" :href="e.report"><div class="logo logo-small musou"></div><span>報導</span></a>
-      <a v-if="e.transcript" :href="e.transcript"><div class="icon icon-small transcript"></div><span>逐字稿</span></a>
+<a class="link" v-if="e.livestream" :href="e.livestream" target="livestream"><div class="logo logo-small woo"></div><span>直播</span></a>
+<a class="link" v-if="e.report" :href="e.report" target="report"><div class="logo logo-small musou"></div><span>報導</span></a>
+<a class="link" v-if="e.transcript" :href="e.transcript" target="transcript"><div class="icon icon-small transcript"></div><span>逐字稿</span></a>
     </div>
   </div>
   `,
