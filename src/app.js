@@ -157,21 +157,33 @@ Vue.component('event-wide', {
 });
 Vue.component('event-in-list', {
   mixins: [mxEvent],
+  computed: {
+    eventClasses: function() {
+      return {'guest-one': (this.e.guests.length == 1)};
+    },
+    guestClasses: function() {
+      return {'photo-large': (this.e.guests.length == 1), 'photo-small': (this.e.guests.length > 2)};
+    },
+    linkWrapperClasses: function() {
+      var flag = this.e.guests.length%3;
+      return {'flex-column': flag, 'flex-row': !flag, 'contained': flag};
+    },
+  },
   template: `
-  <div class="event event-in-list" :g="e.guests.length">
+  <div class="event event-in-list" :class="eventClasses">
     <div class="info">
       <date :dateString="e.date"></date>
       <h3 class="title">{{ e.title }}</h3>
     </div>
     <div class="guests">
       <ul class="list list-naked">
-        <guest v-for="g in e.guests" :key="g.name" :g="g"></guest>
+        <guest v-for="g in e.guests" :key="g.name" :g="g" :class="guestClasses"></guest>
       </ul>
     </div>
-    <div class="links">
-<a class="link" v-if="e.livestream" :href="e.livestream" target="livestream"><div class="logo logo-small woo"></div><span>直播</span></a>
-<a class="link" v-if="e.report" :href="e.report" target="report"><div class="logo logo-small musou"></div><span>報導</span></a>
-<a class="link" v-if="e.transcript" :href="e.transcript" target="transcript"><div class="icon icon-small transcript"></div><span>逐字稿</span></a>
+    <div class="links d-flex" :class="linkWrapperClasses">
+      <a class="link" v-if="e.livestream" :href="e.livestream" target="livestream"><div class="logo logo-small woo"></div><span>直播</span></a>
+      <a class="link" v-if="e.report" :href="e.report" target="report"><div class="logo logo-small musou"></div><span>報導</span></a>
+      <a class="link" v-if="e.transcript" :href="e.transcript" target="transcript"><div class="icon icon-small transcript"></div><span>逐字稿</span></a>
     </div>
   </div>
   `,

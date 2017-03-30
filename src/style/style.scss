@@ -148,10 +148,17 @@ section {
   position: relative;
   margin: 0 0.5rem;
   > .photo {
-    width: 128px;
-    height: 128px;
+    width: 8rem;
+    height: 0;
+    padding-bottom: 100%;
     border-radius: 50%;
     background: $color-placeholder;
+  }
+  &.photo-small > .photo {
+    width: 6rem;
+  }
+  &.photo-large > .photo {
+    width: 12rem;
   }
   > .name, > .job {
     display: block;
@@ -205,39 +212,16 @@ section {
         margin-right: 0.25rem;
       }
     }
-  }
-  &[g="1"], &[g="2"], &[g="4"], &[g="5"] {
-    .links {
+    &.contained {
       position: absolute;
       bottom: 0;
-      > .link {
-        display: block;
-      }
     }
   }
-  &[g="1"] {
+  &.guest-one {
     padding-top: 1.5rem;
     .info {
       position: absolute;
       top: 0;
-    }
-    .guest {
-      > .photo {
-        width: 11rem;
-        height: 11rem;
-      }
-    }
-  }
-  &[g="2"] {
-    .guest > .photo {
-      width: 6rem;
-      height: 6rem;
-    }
-  }
-  &[g="3"], &[g="4"], &[g="5"], &[g="6"] {
-    .guest > .photo {
-      width: 5rem;
-      height: 5rem;
     }
   }
 }
@@ -245,6 +229,9 @@ section {
 .container-960 {
   max-width: 960px;
   box-sizing: content-box;
+  > .row {
+    box-sizing: border-box;
+  }
 }
 
 .navbar, .navbar-brand {
@@ -273,12 +260,5 @@ section {
 .icon-small {
   &.transcript {
     background-image: url(../../asset/icon/transcript/small.png);
-  }
-}
-
-.avoid-weird-space {
-  font-size: 0;
-  > * {
-    font-size: 1rem;
   }
 }
