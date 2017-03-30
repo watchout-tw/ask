@@ -18,49 +18,13 @@
       <div class="label bg-musou-light" :status="status">
         <div class="lightbulb d-inline-block align-top"><div class="bulb"></div></div><label class="d-inline-block align-top">{{ status }}</label>
       </div>
-      <div class="player">
-        <div class="embed-responsive embed-responsive-16by9">
-          <iframe class="embed-responsive-item" :style="now.styles.player"></iframe>
-        </div>
-      </div>
-      <div class="info">
-        <h2 class="title">{{ now.title }}</h2>
-        <div v-if="now.partners.length > 0" class="partners">
-          <ul class="list list-naked"><label>合作夥伴</label>
-            <partner v-for="p in now.partners" :key="p.name" :p="p"></partner>
-          </ul>
-        </div>
-      </div>
+      <event-with-player :e="now" :title="now.title"></event-with-player>
     </section>
     <section id="next" class="bg-ask-light">
       <div class="label bg-ask-light">
         <label>NEXT</label>
       </div>
-      <div class="container-fluid container-960">
-        <div class="row">
-          <div class="col col-md-4 info">
-            <h2 class="title">{{ next.title }}</h2>
-            <time :datetime="next.date">{{ next.date }}</time>
-            <time :datetime="next.start">{{ next.start }}</time>
-            <time :datetime="next.end">{{ next.end }}</time>
-            <div class="pgroup">
-              {{ next.description }}
-            </div>
-            <div v-if="next.partners.length > 0" class="partners">
-              <ul class="list list-naked"><label>合作夥伴</label>
-                <partner v-for="p in next.partners" :key="p.name" :p="p"></partner>
-              </ul>
-            </div>
-          </div>
-          <div class="col">
-            <div class="guests">
-              <ul class="list list-naked">
-                <guest v-for="g in next.guests" :key="g.name" :g="g"></guest><a class="guest d-inline-block align-top signup" :href="next.signup" target="signup"><div class="photo"></div></a>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div><!-- end of container -->
+      <event-wide :e="next" :title="next.title"></event-wide>
     </section>
     <section id="intro">
       <h2 class="header-block-tall header-center bg-ask-gradient-to-transparent">{{ intro.title }}</h2>
@@ -71,20 +35,9 @@
     <section id="history">
       <h2 class="header-block header-center bg-ask-light">{{ history.title }}</h2>
       <div class="container events">
-        <ul class="row list-naked">
-          <li v-for="e in history.events" :key="e.title" class="event col col-lg-4">
-            <time :datetime="e.date">{{ e.date }}</time>
-            <h3>{{ e.title }}</h3>
-            <div class="guests">
-              <ul class="list list-naked">
-                <guest v-for="g in e.guests" :key="g.name" :g="g"></guest>
-              </ul>
-            </div>
-            <div v-if="e.partners.length > 0" class="partners">
-              <ul class="list list-naked"><label>合作夥伴</label>
-                <partner v-for="p in e.partners" :key="p.name" :p="p"></partner>
-              </ul>
-            </div>
+        <ul class="row list list-naked">
+          <li v-for="e in history.events" :key="e.title" class="item col col-lg-4">
+            <event-in-list :e="e" :title="e.title"></event-in-list>
           </li>
         </ul>
       </div>

@@ -15,7 +15,7 @@ var Factory = (function Factory() {
   this.event = function(options) {
     // init options
     options = options || {numberOf: {}};
-    options.numberOf.guests = options.numberOf.guests || randomInt(1, 5);
+    options.numberOf.guests = options.numberOf.guests || randomInt(1, 6);
     var guests = [];
     for(var i = 0; i < options.numberOf.guests; i++)
       guests.push(this.guest());
@@ -37,14 +37,9 @@ var Factory = (function Factory() {
       guests: guests,
       partners: partners,
       signup: 'http://watchout.tw/',
-      livestream: youtubeID,
-      article: null,
-      transcript: null,
-      styles: {
-        player: {
-          backgroundImage: 'url(https://' + 'img.youtube.com/vi/' + youtubeID + '/maxresdefault.jpg)'
-        },
-      },
+      livestream: 'https://youtu.be/' + youtubeID,
+      report: 'https://musou.tw/focuses/1344',
+      transcript: 'https://hackpad.com/1sTYa1KtxXq',
     };
   }
   this.guest = function() {

@@ -17,6 +17,13 @@ $font-size-small: 0.875rem;
 label {
   margin: 0;
 }
+a {
+  color: blue;
+}
+a:hover {
+  color: blue;
+  border-bottom: 1px blue solid;
+}
 
 .bg-ask {
   background-color: $color-ask;
@@ -115,7 +122,25 @@ section {
   }
 }
 .guests {
-  margin: 0 -0.5rem;
+  margin: 0 -0.5rem; // compensating the left+right margin of .guest
+  &[nofg="1"] {
+    .guest > .photo {
+      width: 11rem;
+      height: 11rem;
+    }
+  }
+  &[nofg="2"] {
+    .guest > .photo {
+      width: 6rem;
+      height: 6rem;
+    }
+  }
+  &[nofg="3"], &[nofg="4"], &[nofg="5"], &[nofg="6"] {
+    .guest > .photo {
+      width: 5rem;
+      height: 5rem;
+    }
+  }
 }
 .guest {
   position: relative;
@@ -145,6 +170,7 @@ section {
   }
 }
 
+
 .container-960 {
   max-width: 960px;
   box-sizing: content-box;
@@ -157,4 +183,31 @@ section {
   display: block;
   width: 212px;
   height: auto;
+}
+
+.logo-small, .icon-small {
+  width: 24px;
+  height: 24px;
+  background-size: contain;
+  background-position: "center center";
+}
+.logo-small {
+  &.musou {
+    background-image: url(../../asset/logo/musou/small.png);
+  }
+  &.woo {
+    background-image: url(../../asset/logo/woo/small.png);
+  }
+}
+.icon-small {
+  &.transcript {
+    background-image: url(../../asset/icon/transcript/small.png);
+  }
+}
+
+.links > a {
+  > .logo-small, > .icon-small, > span {
+    display: inline-block;
+    vertical-align: top;
+  }
 }
