@@ -13,18 +13,18 @@
     <nav class="navbar sticky-top navbar-light bg-ask">
       <a class="navbar-brand" href="https://ask.watchout.tw/"><img src="./asset/logo+type.png" class="logo-type"/></a>
     </nav>
-    <section id="cover" :title="cover.title" :style="cover.styles"></section>
+    <section id="cover" :title="cover.title" :style="styles.cover"></section>
     <section id="now">
-      <div class="label bg-musou-light" :status="status">
-        <div class="lightbulb d-inline-block align-top"><div class="bulb"></div></div><label class="d-inline-block align-top">{{ status }}</label>
+      <div class="label bg-musou-light" :status="now.status">
+        <div class="lightbulb d-inline-block align-top"><div class="bulb"></div></div><label class="d-inline-block align-top">{{ now.status }}</label>
       </div>
-      <event-with-player :e="now" :title="now.title"></event-with-player>
+      <event-with-player :e="now.event" :title="now.event.title"></event-with-player>
     </section>
     <section id="next" class="bg-ask-light">
       <div class="label bg-ask-light">
-        <label>NEXT</label>
+        <label>{{ next.title }}</label>
       </div>
-      <event-wide :e="next" :title="next.title"></event-wide>
+      <event-wide :e="next.event" :title="next.event.title"></event-wide>
     </section>
     <section id="intro">
       <h2 class="header-block-tall header-center bg-ask-gradient-to-transparent">{{ intro.title }}</h2>
