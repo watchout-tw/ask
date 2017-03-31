@@ -19,7 +19,7 @@ Vue.component('guest', {
     }
   },
   template: `
-  <li class="guest d-inline-block align-top">
+  <li class="guest">
     <div class="photo"></div>
     <label class="name">{{ g.name }}</label>
     <label class="job">{{ g.job }}</label>
@@ -146,8 +146,8 @@ Vue.component('event-wide', {
       </div>
       <div class="col-lg-8">
         <div class="guests">
-          <ul class="list list-naked">
-            <guest v-for="g in e.guests" :key="g.name" :g="g"></guest><a class="guest d-inline-block align-top signup" :href="e.signup" target="signup"><div class="photo"></div></a>
+          <ul class="list list-naked d-flex flex-row flex-wrap justify-content-end">
+            <guest v-for="g in e.guests" :key="g.name" :g="g"></guest><a class="guest signup" :href="e.signup" target="signup"><div class="photo"></div></a>
           </ul>
         </div>
       </div>
@@ -183,7 +183,7 @@ Vue.component('event-in-list', {
       <h3 class="title">{{ e.title }}</h3>
     </div>
     <div class="guests">
-      <ul class="list list-naked">
+      <ul class="list list-naked d-flex flex-row flex-wrap justify-content-end">
         <guest v-for="g in e.guests" :key="g.name" :g="g" :class="classes.guest"></guest>
       </ul>
     </div>
@@ -200,7 +200,7 @@ var app = new Vue({
   el: '#app',
   data: {
     generatedAt: new Date(),
-    status: 'SOON',
+    status: 'LIVE',
     cover: {
       title: '沃草給問擂台',
       styles: {
