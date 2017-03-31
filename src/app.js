@@ -1,14 +1,3 @@
-var events = {
-  now: Factory.event(),
-  next: Factory.event(),
-  history: [
-    Factory.event(),
-    Factory.event(),
-    Factory.event(),
-    Factory.event(),
-  ],
-};
-
 Vue.component('guest', {
   props: {
     g: {
