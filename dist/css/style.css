@@ -1,18 +1,18 @@
-@keyframes flickerAnimation {
+@keyframes animationFlicker {
   0% {
     opacity: 1; }
   50% {
     opacity: 0.05; }
   100% {
     opacity: 1; } }
-@-moz-keyframes flickerAnimation {
+@-moz-keyframes animationFlicker {
   0% {
     opacity: 1; }
   50% {
     opacity: 0.05; }
   100% {
     opacity: 1; } }
-@-webkit-keyframes flickerAnimation {
+@-webkit-keyframes animationFlicker {
   0% {
     opacity: 1; }
   50% {
@@ -20,9 +20,9 @@
   100% {
     opacity: 1; } }
 .animate-flicker {
-  -webkit-animation: flickerAnimation 2s infinite;
-  -moz-animation: flickerAnimation 2s infinite;
-  animation: flickerAnimation 2s infinite; }
+  -webkit-animation: animationFlicker 2s infinite;
+  -moz-animation: animationFlicker 2s infinite;
+  animation: animationFlicker 2s infinite; }
 
 /* Colors */
 /* Typography */
@@ -67,7 +67,8 @@ a, a:hover {
   padding: 1em 0; }
 
 section {
-  width: 100%; }
+  width: 100%;
+  padding-bottom: 2rem; }
 
 .container-960 {
   max-width: 990px; }
@@ -168,12 +169,16 @@ section#now {
 
 .event {
   position: relative; }
+  .event .info {
+    margin: 0.5rem 0; }
   .event .guests {
     margin: 0 -0.5rem; }
+  .event .partners {
+    margin: 0.5rem 0; }
 
 .guest {
   position: relative;
-  margin: 0 0.5rem; }
+  margin: 0.5rem; }
   .guest > .photo {
     width: 8rem;
     height: 0;

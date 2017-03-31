@@ -129,7 +129,7 @@ Vue.component('event-with-signup', {
   template: `
   <div class="event event-with-signup container-fluid container-960">
     <div class="row">
-      <div class="col-lg-4">
+      <div class="col-md-auto col-lg-4">
         <div class="info">
           <h2 class="title">{{ e.title }}</h2>
           <date :dateString="e.date" class="date-large"></date>
@@ -144,9 +144,9 @@ Vue.component('event-with-signup', {
           </ul>
         </div>
       </div>
-      <div class="col-lg-8">
+      <div class="col-md col-lg-8">
         <div class="guests">
-          <ul class="list list-unstyled d-flex flex-row flex-wrap justify-content-start">
+          <ul class="list list-unstyled d-flex flex-row flex-wrap justify-content-center justify-content-md-start">
             <guest v-for="g in e.guests" :key="g.name" :g="g"></guest><a class="guest signup" :href="e.signup" target="signup"><div class="photo"></div></a>
           </ul>
         </div>
