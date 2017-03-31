@@ -14,6 +14,9 @@ $font-size-small: 0.875rem;
   font-family: "Space Mono", monospace;
 }
 
+// General override
+
+// Small element
 label {
   margin: 0;
 }
@@ -21,6 +24,23 @@ a, a:hover {
   color: blue;
 }
 
+// List
+.list-unstyled {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+// Navbar
+.navbar, .navbar-brand {
+  padding: 0;
+}
+
+// Watchout Commons-specific additional styles
+// following Bootstrap convention
+
+// Background color
 .bg-ask {
   background-color: $color-ask;
 }
@@ -33,6 +53,8 @@ a, a:hover {
 .bg-musou-light {
   background-color: rgba($color-musou, 0.25);
 }
+
+// Header
 .header-center {
   text-align: center;
 }
@@ -43,13 +65,57 @@ a, a:hover {
 .header-block-tall {
   padding: 1em 0;
 }
-.list-naked {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
+
+// Layout
 section {
   width: 100%;
+}
+.container-960 {
+  max-width: 960px;
+  box-sizing: content-box;
+  > .row {
+    box-sizing: border-box;
+  }
+}
+
+// Navbar
+.logo-type {
+  display: block;
+  width: 212px;
+  height: auto;
+}
+
+// Logo & icon
+.logo-small, .icon-small {
+  width: 24px;
+  height: 24px;
+  background-size: contain;
+  background-position: "center center";
+}
+.logo-small {
+  &.musou {
+    background-image: url(../../asset/logo/musou/small.png);
+  }
+  &.woo {
+    background-image: url(../../asset/logo/woo/small.png);
+  }
+}
+.icon-small {
+  &.transcript {
+    background-image: url(../../asset/icon/transcript/small.png);
+  }
+}
+
+// Watchout Commons-specific additional styles
+.pgroup {
+  width: 18rem;
+}
+.pgroup-center {
+  margin: 0 auto;
+}
+
+// Page-specific styles
+section {
   > .label {
     @include font-monospace;
     height: 3rem;
@@ -106,12 +172,6 @@ section {
     background-size: contain;
   }
 }
-.pgroup {
-  width: 18rem;
-}
-.pgroup-center {
-  margin: 0 auto;
-}
 .partners > ul {
   > label {
     font-size: $font-size-small;
@@ -154,12 +214,6 @@ section {
     border-radius: 50%;
     background: $color-placeholder;
   }
-  &.photo-small > .photo {
-    width: 6rem;
-  }
-  &.photo-large > .photo {
-    width: 12rem;
-  }
   > .name, > .job {
     display: block;
   }
@@ -168,6 +222,12 @@ section {
     font-weight: 500;
   }
 
+  &.photo-small > .photo {
+    width: 6rem;
+  }
+  &.photo-large > .photo {
+    width: 12rem;
+  }
   &.signup {
     > .photo {
       background-color: $color-ask;
@@ -178,7 +238,6 @@ section {
     }
   }
 }
-
 .event-in-list {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
@@ -220,42 +279,5 @@ section {
       position: absolute;
       top: 0;
     }
-  }
-}
-
-.container-960 {
-  max-width: 960px;
-  box-sizing: content-box;
-  > .row {
-    box-sizing: border-box;
-  }
-}
-
-.navbar, .navbar-brand {
-  padding: 0;
-}
-.logo-type {
-  display: block;
-  width: 212px;
-  height: auto;
-}
-
-.logo-small, .icon-small {
-  width: 24px;
-  height: 24px;
-  background-size: contain;
-  background-position: "center center";
-}
-.logo-small {
-  &.musou {
-    background-image: url(../../asset/logo/musou/small.png);
-  }
-  &.woo {
-    background-image: url(../../asset/logo/woo/small.png);
-  }
-}
-.icon-small {
-  &.transcript {
-    background-image: url(../../asset/icon/transcript/small.png);
   }
 }

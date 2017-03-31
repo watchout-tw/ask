@@ -4,6 +4,15 @@ label {
 a, a:hover {
   color: blue; }
 
+.list-unstyled {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none; }
+
+.navbar, .navbar-brand {
+  padding: 0; }
+
 .bg-ask {
   background-color: #4DEBDF; }
 
@@ -26,50 +35,77 @@ a, a:hover {
 .header-block-tall {
   padding: 1em 0; }
 
-.list-naked {
-  padding: 0;
-  margin: 0;
-  list-style: none; }
-
 section {
   width: 100%; }
-  section > .label {
-    font-family: "Space Mono", monospace;
+
+.container-960 {
+  max-width: 960px;
+  box-sizing: content-box; }
+  .container-960 > .row {
+    box-sizing: border-box; }
+
+.logo-type {
+  display: block;
+  width: 212px;
+  height: auto; }
+
+.logo-small, .icon-small {
+  width: 24px;
+  height: 24px;
+  background-size: contain;
+  background-position: "center center"; }
+
+.logo-small.musou {
+  background-image: url(../../asset/logo/musou/small.png); }
+.logo-small.woo {
+  background-image: url(../../asset/logo/woo/small.png); }
+
+.icon-small.transcript {
+  background-image: url(../../asset/icon/transcript/small.png); }
+
+.pgroup {
+  width: 18rem; }
+
+.pgroup-center {
+  margin: 0 auto; }
+
+section > .label {
+  font-family: "Space Mono", monospace;
+  height: 3rem;
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+  font-size: 1.5rem;
+  line-height: 3rem;
+  display: block;
+  text-align: center; }
+  section > .label > .lightbulb {
+    position: relative;
+    width: 1.5rem;
     height: 3rem;
-    margin: 0;
-    padding: 0;
-    font-weight: bold;
-    font-size: 1.5rem;
-    line-height: 3rem;
-    display: block;
-    text-align: center; }
-    section > .label > .lightbulb {
-      position: relative;
+    margin-right: 0.25rem; }
+    section > .label > .lightbulb > .bulb {
+      position: absolute;
       width: 1.5rem;
-      height: 3rem;
-      margin-right: 0.25rem; }
-      section > .label > .lightbulb > .bulb {
-        position: absolute;
-        width: 1.5rem;
-        height: 1.5rem;
-        top: 50%;
-        transform: translateY(-50%);
-        left: 0;
-        border-radius: 50%;
-        border: 2px #FF5368 solid; }
-    section > .label[status="LIVE"] > .lightbulb > .bulb {
-      background: #FF5368; }
-    section > .label[status="SOON"] > .lightbulb > .bulb {
-      border: 4px #FF5368 solid; }
-  section#cover {
-    height: 0;
-    padding-bottom: 50%;
-    background-color: rgba(0, 0, 0, 0.04);
-    background-size: cover;
-    background-position: "center center"; }
-  section#now {
-    max-width: 60rem;
-    margin: 0 auto; }
+      height: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 0;
+      border-radius: 50%;
+      border: 2px #FF5368 solid; }
+  section > .label[status="LIVE"] > .lightbulb > .bulb {
+    background: #FF5368; }
+  section > .label[status="SOON"] > .lightbulb > .bulb {
+    border: 4px #FF5368 solid; }
+section#cover {
+  height: 0;
+  padding-bottom: 50%;
+  background-color: rgba(0, 0, 0, 0.04);
+  background-size: cover;
+  background-position: "center center"; }
+section#now {
+  max-width: 60rem;
+  margin: 0 auto; }
 
 .player {
   background-color: rgba(0, 0, 0, 0.04);
@@ -77,12 +113,6 @@ section {
   background-position: "center center"; }
   .player .embed-responsive-item {
     background-size: contain; }
-
-.pgroup {
-  width: 18rem; }
-
-.pgroup-center {
-  margin: 0 auto; }
 
 .partners > ul > label {
   font-size: 0.875rem;
@@ -118,15 +148,15 @@ section {
     padding-bottom: 100%;
     border-radius: 50%;
     background: rgba(0, 0, 0, 0.04); }
-  .guest.photo-small > .photo {
-    width: 6rem; }
-  .guest.photo-large > .photo {
-    width: 12rem; }
   .guest > .name, .guest > .job {
     display: block; }
   .guest > .job {
     font-size: 0.875rem;
     font-weight: 500; }
+  .guest.photo-small > .photo {
+    width: 6rem; }
+  .guest.photo-large > .photo {
+    width: 12rem; }
   .guest.signup > .photo {
     background-color: #4DEBDF;
     background-image: url(../../asset/+1.png);
@@ -164,33 +194,5 @@ section {
     .event-in-list.guest-one .info {
       position: absolute;
       top: 0; }
-
-.container-960 {
-  max-width: 960px;
-  box-sizing: content-box; }
-  .container-960 > .row {
-    box-sizing: border-box; }
-
-.navbar, .navbar-brand {
-  padding: 0; }
-
-.logo-type {
-  display: block;
-  width: 212px;
-  height: auto; }
-
-.logo-small, .icon-small {
-  width: 24px;
-  height: 24px;
-  background-size: contain;
-  background-position: "center center"; }
-
-.logo-small.musou {
-  background-image: url(../../asset/logo/musou/small.png); }
-.logo-small.woo {
-  background-image: url(../../asset/logo/woo/small.png); }
-
-.icon-small.transcript {
-  background-image: url(../../asset/icon/transcript/small.png); }
 
 /*# sourceMappingURL=style.css.map */

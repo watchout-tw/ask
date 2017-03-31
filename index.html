@@ -35,7 +35,7 @@
     <section id="history">
       <h2 class="header-block header-center bg-ask-light">{{ history.title }}</h2>
       <div class="container events">
-        <ul class="row list list-naked">
+        <ul class="row list list-unstyled">
           <li v-for="e in history.events" :key="e.title" class="item col-md-6 col-lg-4">
             <event-in-list :e="e" :title="e.title"></event-in-list>
           </li>

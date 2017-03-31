@@ -117,7 +117,7 @@ Vue.component('event-with-player', {
       <h3 class="title">{{ e.title }}</h3>
     </div>
     <div v-if="e.partners.length > 0" class="partners">
-      <ul class="list list-naked"><label>合作夥伴</label>
+      <ul class="list list-unstyled"><label>合作夥伴</label>
         <partner v-for="p in e.partners" :key="p.name" :p="p"></partner>
       </ul>
     </div>
@@ -139,14 +139,14 @@ Vue.component('event-wide', {
           {{ e.description }}
         </div>
         <div v-if="e.partners.length > 0" class="partners">
-          <ul class="list list-naked"><label>合作夥伴</label>
+          <ul class="list list-unstyled"><label>合作夥伴</label>
             <partner v-for="p in e.partners" :key="p.name" :p="p"></partner>
           </ul>
         </div>
       </div>
       <div class="col-lg-8">
         <div class="guests">
-          <ul class="list list-naked d-flex flex-row flex-wrap justify-content-end">
+          <ul class="list list-unstyled d-flex flex-row flex-wrap justify-content-end">
             <guest v-for="g in e.guests" :key="g.name" :g="g"></guest><a class="guest signup" :href="e.signup" target="signup"><div class="photo"></div></a>
           </ul>
         </div>
@@ -183,7 +183,7 @@ Vue.component('event-in-list', {
       <h3 class="title">{{ e.title }}</h3>
     </div>
     <div class="guests">
-      <ul class="list list-naked d-flex flex-row flex-wrap justify-content-end">
+      <ul class="list list-unstyled d-flex flex-row flex-wrap justify-content-end">
         <guest v-for="g in e.guests" :key="g.name" :g="g" :class="classes.guest"></guest>
       </ul>
     </div>
