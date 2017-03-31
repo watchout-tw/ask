@@ -16,7 +16,7 @@
     <section id="cover" :title="cover.title" :style="styles.cover"></section>
     <section id="now">
       <div class="label bg-musou-light" :status="now.status">
-        <div class="lightbulb d-inline-block align-top"><div class="bulb"></div></div><label class="d-inline-block align-top">{{ now.status }}</label>
+        <div class="lightbulb d-inline-block align-top animate-flicker"><div class="bulb"></div></div><label class="d-inline-block align-top">{{ now.status }}</label>
       </div>
       <event-with-player :e="now.event" :title="now.event.title"></event-with-player>
     </section>
@@ -24,7 +24,7 @@
       <div class="label bg-ask-light">
         <label>{{ next.title }}</label>
       </div>
-      <event-wide :e="next.event" :title="next.event.title"></event-wide>
+      <event-with-signup :e="next.event" :title="next.event.title"></event-with-signup>
     </section>
     <section id="intro">
       <h2 class="header-block-tall header-center bg-ask-gradient-to-transparent">{{ intro.title }}</h2>

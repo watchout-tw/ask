@@ -1,10 +1,18 @@
+@import 'animate';
+
+/* Variables */
+
+// Colors
 $color-ask: #4DEBDF;
 $color-musou: #FF5368;
 $color-placeholder: rgba(0, 0, 0, 0.04);
 $color-shadow: rgba(0, 0, 0, 0.25);
 
+
+// Typography
 $font-size-small: 0.875rem;
 
+// Mixin
 @mixin placeholder {
   background-color: $color-placeholder;
   background-size: cover;
@@ -14,7 +22,7 @@ $font-size-small: 0.875rem;
   font-family: "Space Mono", monospace;
 }
 
-// General override
+/* General override */
 
 // Small element
 label {
@@ -37,7 +45,7 @@ a, a:hover {
   padding: 0;
 }
 
-// Watchout Commons-specific additional styles
+/* Watchout Commons-specific additional styles */
 // following Bootstrap convention
 
 // Background color
@@ -71,11 +79,7 @@ section {
   width: 100%;
 }
 .container-960 {
-  max-width: 960px;
-  box-sizing: content-box;
-  > .row {
-    box-sizing: border-box;
-  }
+  max-width: 990px;
 }
 
 // Navbar
@@ -106,7 +110,8 @@ section {
   }
 }
 
-// Watchout Commons-specific additional styles
+/* Watchout Commons-specific additional styles */
+
 .pgroup {
   width: 18rem;
 }
@@ -114,7 +119,8 @@ section {
   margin: 0 auto;
 }
 
-// Page-specific styles
+/* Page-specific styles */
+
 section {
   > .label {
     @include font-monospace;
@@ -157,6 +163,7 @@ section {
     }
   }
   &#cover {
+    display: none;
     height: 0;
     padding-bottom: 50%;
     @include placeholder;
@@ -193,10 +200,13 @@ section {
     }
   }
 }
-.time-period {
+.time {
   @include font-monospace;
-  font-size: 1.5rem;
-  line-height: 1.875rem;
+
+  &.time-large {
+    font-size: 1.5rem;
+    line-height: 1.875rem;
+  }
 }
 .event {
   position: relative;

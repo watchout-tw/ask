@@ -76,7 +76,7 @@ Vue.component('time-period', {
     }
   },
   template: `
-  <time class="time-period" :datetime="timeString">{{ humanFriendlyString }}</time>
+  <time class="time" :datetime="timeString">{{ humanFriendlyString }}</time>
   `,
 });
 
@@ -112,9 +112,9 @@ Vue.component('event-with-player', {
       </div>
     </div>
     <div class="info">
-      <date :dateString="e.date" class="date-large"></date>
-      <time-period :start="e.start" :end="e.end"></time-period>
       <h3 class="title">{{ e.title }}</h3>
+      <date :dateString="e.date"></date>
+      <time-period :start="e.start" :end="e.end"></time-period>
     </div>
     <div v-if="e.partners.length > 0" class="partners">
       <ul class="list list-unstyled"><label>合作夥伴</label>
@@ -124,16 +124,16 @@ Vue.component('event-with-player', {
   </div>
   `,
 });
-Vue.component('event-wide', {
+Vue.component('event-with-signup', {
   mixins: [mxEvent],
   template: `
-  <div class="event event-wide container-fluid container-960">
+  <div class="event event-with-signup container-fluid container-960">
     <div class="row">
       <div class="col-lg-4">
         <div class="info">
           <h2 class="title">{{ e.title }}</h2>
           <date :dateString="e.date" class="date-large"></date>
-          <time-period :start="e.start" :end="e.end"></time-period>
+          <time-period :start="e.start" :end="e.end" class="time-large"></time-period>
         </div>
         <div class="description pgroup">
           {{ e.description }}
@@ -146,7 +146,7 @@ Vue.component('event-wide', {
       </div>
       <div class="col-lg-8">
         <div class="guests">
-          <ul class="list list-unstyled d-flex flex-row flex-wrap justify-content-end">
+          <ul class="list list-unstyled d-flex flex-row flex-wrap justify-content-start">
             <guest v-for="g in e.guests" :key="g.name" :g="g"></guest><a class="guest signup" :href="e.signup" target="signup"><div class="photo"></div></a>
           </ul>
         </div>

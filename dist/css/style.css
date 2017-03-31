@@ -1,3 +1,31 @@
+@keyframes flickerAnimation {
+  0% {
+    opacity: 1; }
+  50% {
+    opacity: 0.05; }
+  100% {
+    opacity: 1; } }
+@-moz-keyframes flickerAnimation {
+  0% {
+    opacity: 1; }
+  50% {
+    opacity: 0.05; }
+  100% {
+    opacity: 1; } }
+@-webkit-keyframes flickerAnimation {
+  0% {
+    opacity: 1; }
+  50% {
+    opacity: 0.05; }
+  100% {
+    opacity: 1; } }
+.animate-flicker {
+  -webkit-animation: flickerAnimation 2s infinite;
+  -moz-animation: flickerAnimation 2s infinite;
+  animation: flickerAnimation 2s infinite; }
+
+/* Variables */
+/* General override */
 label {
   margin: 0; }
 
@@ -13,6 +41,7 @@ a, a:hover {
 .navbar, .navbar-brand {
   padding: 0; }
 
+/* Watchout Commons-specific additional styles */
 .bg-ask {
   background-color: #4DEBDF; }
 
@@ -39,10 +68,7 @@ section {
   width: 100%; }
 
 .container-960 {
-  max-width: 960px;
-  box-sizing: content-box; }
-  .container-960 > .row {
-    box-sizing: border-box; }
+  max-width: 990px; }
 
 .logo-type {
   display: block;
@@ -63,12 +89,14 @@ section {
 .icon-small.transcript {
   background-image: url(../../asset/icon/transcript/small.png); }
 
+/* Watchout Commons-specific additional styles */
 .pgroup {
   width: 18rem; }
 
 .pgroup-center {
   margin: 0 auto; }
 
+/* Page-specific styles */
 section > .label {
   font-family: "Space Mono", monospace;
   height: 3rem;
@@ -98,6 +126,7 @@ section > .label {
   section > .label[status="SOON"] > .lightbulb > .bulb {
     border: 4px #FF5368 solid; }
 section#cover {
+  display: none;
   height: 0;
   padding-bottom: 50%;
   background-color: rgba(0, 0, 0, 0.04);
@@ -129,10 +158,11 @@ section#now {
       font-size: 1rem;
       line-height: 1.875rem; }
 
-.time-period {
-  font-family: "Space Mono", monospace;
-  font-size: 1.5rem;
-  line-height: 1.875rem; }
+.time {
+  font-family: "Space Mono", monospace; }
+  .time.time-large {
+    font-size: 1.5rem;
+    line-height: 1.875rem; }
 
 .event {
   position: relative; }
