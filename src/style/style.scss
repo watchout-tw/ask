@@ -101,6 +101,10 @@ section {
 
 /* Page-specific styles */
 
+body {
+  background-image: url(../../asset/demo.png);
+}
+
 section {
   > .label {
     @include font-monospace;

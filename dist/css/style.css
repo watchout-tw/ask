@@ -100,6 +100,9 @@ section {
   margin: 0 auto; }
 
 /* Page-specific styles */
+body {
+  background-image: url(../../asset/demo.png); }
+
 section > .label {
   font-family: "Space Mono", monospace;
   height: 3rem;
