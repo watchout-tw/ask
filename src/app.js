@@ -112,7 +112,7 @@ Vue.component('event-with-player', {
       </div>
     </div>
     <div class="info">
-      <h3 class="title">{{ e.title }}</h3>
+      <h2 class="title">{{ e.title }}</h2>
       <date :dateString="e.date"></date>
       <time-period :start="e.start" :end="e.end"></time-period>
     </div>
