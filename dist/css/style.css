@@ -24,7 +24,9 @@
   -moz-animation: flickerAnimation 2s infinite;
   animation: flickerAnimation 2s infinite; }
 
-/* Variables */
+/* Colors */
+/* Typography */
+/* Mixin */
 /* General override */
 label {
   margin: 0; }
