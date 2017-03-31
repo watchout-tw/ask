@@ -111,15 +111,19 @@ Vue.component('event-with-player', {
         <iframe class="embed-responsive-item" :style="player.styles"></iframe>
       </div>
     </div>
-    <div class="info">
-      <h2 class="title">{{ e.title }}</h2>
-      <date :dateString="e.date"></date>
-      <time-period :start="e.start" :end="e.end"></time-period>
-    </div>
-    <div v-if="e.partners.length > 0" class="partners">
-      <ul class="list list-unstyled"><label>合作夥伴</label>
-        <partner v-for="p in e.partners" :key="p.name" :p="p"></partner>
-      </ul>
+    <div class="container-fluid container-960">
+      <div class="d-sm-flex justify-content-between">
+        <div class="info">
+          <h2 class="title">{{ e.title }}</h2>
+          <date :dateString="e.date"></date>
+          <time-period :start="e.start" :end="e.end"></time-period>
+        </div>
+        <div class="partners text-sm-right" v-if="e.partners.length > 0">
+          <ul class="list list-unstyled"><label>合作夥伴</label>
+            <partner v-for="p in e.partners" :key="p.name" :p="p"></partner>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
   `,
@@ -127,28 +131,30 @@ Vue.component('event-with-player', {
 Vue.component('event-with-signup', {
   mixins: [mxEvent],
   template: `
-  <div class="event event-with-signup container-fluid container-960">
-    <div class="row">
-      <div class="col-md-auto col-lg-4">
-        <div class="info">
-          <h2 class="title">{{ e.title }}</h2>
-          <date :dateString="e.date" class="date-large"></date>
-          <time-period :start="e.start" :end="e.end" class="time-large"></time-period>
+  <div class="event event-with-signup">
+    <div class="container-fluid container-960">
+      <div class="row">
+        <div class="col-md-auto col-lg-4">
+          <div class="info">
+            <h2 class="title">{{ e.title }}</h2>
+            <date :dateString="e.date" class="date-large"></date>
+            <time-period :start="e.start" :end="e.end" class="time-large"></time-period>
+          </div>
+          <div class="description pgroup">
+            {{ e.description }}
+          </div>
+          <div v-if="e.partners.length > 0" class="partners">
+            <ul class="list list-unstyled"><label>合作夥伴</label>
+              <partner v-for="p in e.partners" :key="p.name" :p="p"></partner>
+            </ul>
+          </div>
         </div>
-        <div class="description pgroup">
-          {{ e.description }}
-        </div>
-        <div v-if="e.partners.length > 0" class="partners">
-          <ul class="list list-unstyled"><label>合作夥伴</label>
-            <partner v-for="p in e.partners" :key="p.name" :p="p"></partner>
-          </ul>
-        </div>
-      </div>
-      <div class="col-md col-lg-8">
-        <div class="guests">
-          <ul class="list list-unstyled d-flex flex-row flex-wrap justify-content-center justify-content-md-start">
-            <guest v-for="g in e.guests" :key="g.name" :g="g"></guest><a class="guest signup" :href="e.signup" target="signup"><div class="photo"></div></a>
-          </ul>
+        <div class="col-md col-lg-8">
+          <div class="guests">
+            <ul class="list list-unstyled d-flex flex-row flex-wrap justify-content-center justify-content-md-start">
+              <guest v-for="g in e.guests" :key="g.name" :g="g"></guest><a class="guest signup" :href="e.signup" target="signup"><div class="photo"></div></a>
+            </ul>
+          </div>
         </div>
       </div>
     </div>

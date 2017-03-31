@@ -74,7 +74,7 @@ section {
   width: 24px;
   height: 24px;
   background-size: contain;
-  background-position: "center center";
+  background-position: center center;
 }
 .logo-small {
   &.musou {
@@ -143,17 +143,19 @@ section {
     }
   }
   &#cover {
-    display: none;
     height: 0;
-    padding-bottom: 50%;
+    padding-bottom: 66.666667%;
     @include placeholder;
   }
-  &#now {
-    max-width: 60rem;
-    margin: 0 auto;
+}
+@media (min-width: 576px) {
+  section#cover {
+    padding-bottom: 50%;
   }
 }
 .player {
+  max-width: 60rem;
+  margin: 0 auto;
   @include placeholder;
   .embed-responsive-item {
     background-size: contain;
@@ -229,14 +231,14 @@ section {
       background-color: $color-ask;
       background-image: url(../../asset/+1.png);
       background-size: contain;
-      background-position: "center center";
+      background-position: center center;
       box-shadow: 0px 2px 6px $color-shadow;
     }
   }
 }
 .event-in-list {
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+  border-top: 4px rgba($color-ask, 0.85) solid;
+  margin-bottom: 2rem;
   .title {
     margin: 0;
   }

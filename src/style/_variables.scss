@@ -14,7 +14,7 @@ $font-size-small: 0.875rem;
 @mixin placeholder {
   background-color: $color-placeholder;
   background-size: cover;
-  background-position: "center center";
+  background-position: center center;
 }
 @mixin font-monospace {
   font-family: "Space Mono", monospace;
