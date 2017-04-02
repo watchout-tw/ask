@@ -75,32 +75,54 @@ var raw = [
   Factory.event(),
 ];
 
-function getEventTime(e) {
-    return Math.round(new Date(e.date + 'T' + (e.start.length < 5 ? '0' : '') + e.start).getTime()/1000);
+function getEventStartTime(e) {
+  return Math.round(new Date(e.date + 'T' + (e.start.length < 5 ? '0' : '') + e.start).getTime()/1000);
+}
+function getEventEndTime(e) {
+  return Math.round(new Date(e.date + 'T' + (e.end.length < 5 ? '0' : '') + e.end).getTime()/1000);
 }
 
 // Raw data should be an array of events sorted by start datetime in descending order
 raw.sort(function(a, b) {
-  return getEventTime(b) - getEventTime(a);
+  return getEventStartTime(b) - getEventStartTime(a);
 });
 
 // Make raw data into `events` object according to current time
-var now = new Date().getTime()/1000;
-var events = {};
-
-var soon = 2*24*60*60;
-var target = 0;
+var time = {
+  now: new Date().getTime()/1000,
+  start: 0,
+  end: 0,
+}
+var twoDays = 2*24*60*60;
+var events = {
+  isLive: false,
+  now: null,
+  next: null,
+  history: [],
+};
 raw.forEach(function(v, k) {
-  var d = getEventTime(v);
-  if(now < d) { // future event
-    if(d - now < soon) {
-      target = k;
+  time.start = getEventStartTime(v);
+  time.end = getEventEndTime(v);
+  if(time.now >= time.start && time.now <= time.end) { // live event
+    events.now = k;
+    events.isLive = true;
+  }
+  else if(time.now < time.start) { // future event
+    if(time.start - time.now <= twoDays) {
+      events.now = k;
+      events.isLive = false;
     }
+    else {
+      events.next = k;
+    }
+  }
+  else {
+    events.history.push(k);
   }
 });
 
-var events = {
-  now: raw[target],
-  next: (target - 1 > 0 ? raw[target - 1] : null),
-  history: raw.splice(target + 1),
-};
+events.now = (event.now != null ? raw[events.now] : null);
+events.next = (events.next != null ? raw[events.next] : null);
+events.history = events.history.map(function(k) {
+  return raw[k];
+});

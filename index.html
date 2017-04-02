@@ -15,13 +15,13 @@
       <a class="navbar-brand" href="https://ask.watchout.tw/"><img src="./asset/logo+type.png" class="logo-type"/></a>
     </nav>
     <section id="cover" :title="cover.title" :style="styles.cover"></section>
-    <section id="now">
+    <section id="now" v-if="now">
       <div class="label bg-musou-light" :status="now.status">
         <div class="lightbulb d-inline-block align-top animate-flicker"><div class="bulb"></div></div><label class="d-inline-block align-top">{{ now.status }}</label>
       </div>
       <event-with-player :e="now.event" :title="now.event.title"></event-with-player>
     </section>
-    <section id="next" class="bg-ask-light">
+    <section id="next" class="bg-ask-light" v-if="next">
       <div class="label bg-ask-light">
         <label>{{ next.title }}</label>
       </div>
@@ -30,7 +30,7 @@
     <section id="intro">
       <h2 class="header-block-tall header-center bg-ask-gradient-to-transparent">{{ intro.title }}</h2>
       <div class="pgroup pgroup-center">
-        {{ intro.content }}
+        <p v-for="p in intro.content" :key="p">{{ p }}</p>
       </div>
     </section>
     <section id="history">
