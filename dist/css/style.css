@@ -28,6 +28,10 @@
 /* Typography */
 /* Mixin */
 /* General override */
+h1, h2, h3 {
+  font-family: "source-han-serif-tc", serif;
+  font-weight: bold; }
+
 label {
   margin: 0; }
 

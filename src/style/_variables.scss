@@ -19,3 +19,6 @@ $font-size-small: 0.875rem;
 @mixin font-monospace {
   font-family: "Space Mono", monospace;
 }
+@mixin font-serif {
+  font-family: "source-han-serif-tc", serif;
+}

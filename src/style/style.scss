@@ -4,6 +4,10 @@
 /* General override */
 
 // Small element
+h1, h2, h3 {
+  @include font-serif;
+  font-weight: bold;
+}
 label {
   margin: 0;
 }
