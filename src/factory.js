@@ -10,7 +10,7 @@ var Sample = {
   job: ['總統', '主席', '立法委員', '候選人', '宅宅', '執行長', '歌手', '秘書長'],
   youtubeID: ['4BfxvvbVYWQ', 'THHQzPKuXzI', 'TdtXso7GB_s', 'ADxzZk9wzDk'],
   partner: ['FGT! 體育改革聯會', '自由時報', 'Google', 'Yahoo!', '蘋果日報', '報導者'],
-  date: ['2017-06-08', '2017-05-20', '2017-05-13', '2017-04-17', '2017-04-01', '2016-09-09', '2016-08-31', '2016-06-04'],
+  date: ['2017-06-08', '2017-05-20', '2017-05-13', '2017-04-17', '2017-04-05', '2016-09-09', '2016-08-31', '2016-06-04'],
   time: ['9:00', '10:30', '13:00', '14:30', '16:00', '18:00', '18:30', '19:30'],
 }
 var Factory = (function Factory() {
@@ -76,10 +76,10 @@ var raw = [
 ];
 
 function getEventStartTime(e) {
-  return Math.round(new Date(e.date + 'T' + (e.start.length < 5 ? '0' : '') + e.start).getTime()/1000);
+  return Math.round(new Date(e.date + 'T' + (e.start.length < 5 ? '0' : '') + e.start + "+08:00").getTime()/1000);
 }
 function getEventEndTime(e) {
-  return Math.round(new Date(e.date + 'T' + (e.end.length < 5 ? '0' : '') + e.end).getTime()/1000);
+  return Math.round(new Date(e.date + 'T' + (e.end.length < 5 ? '0' : '') + e.end + "+08:00").getTime()/1000);
 }
 
 // Raw data should be an array of events sorted by start datetime in descending order
@@ -89,7 +89,7 @@ raw.sort(function(a, b) {
 
 // Make raw data into `events` object according to current time
 var time = {
-  now: new Date().getTime()/1000,
+  now: Math.round(new Date().getTime()/1000),
   start: 0,
   end: 0,
 }
@@ -121,7 +121,7 @@ raw.forEach(function(v, k) {
   }
 });
 
-events.now = (event.now != null ? raw[events.now] : null);
+events.now = (events.now != null ? raw[events.now] : null);
 events.next = (events.next != null ? raw[events.next] : null);
 events.history = events.history.map(function(k) {
   return raw[k];
