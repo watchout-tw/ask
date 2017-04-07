@@ -205,12 +205,12 @@ var app = new Vue({
     },
     getSuccess: function(responses) {
       var that = this;
-
+      
       // get db ready
       var db = {};
       tables.forEach(function(name, i) {
         db[name] = responses[i].body.records.map(function(r) {
-          return r.fields;
+          return Object.assign(r.fields, {id: r.id}); // add id to fields
         });
       });
 
@@ -233,22 +233,26 @@ var app = new Vue({
         history: [],
       };
       var matchID = function(element) { // helper function to match IDs
-        return (this === element.id);
+        return (this.id === element.id);
       };
       db.events.forEach(function(e, i) {
         // join guests
-        e.guests = e.guests.map(function(id) {
-          return db.guests.find(matchID, id);
-        });
+        if(!!e.guests && e.guests.length > 0) {
+          e.guests = e.guests.map(function(id) {
+            return db.guests.find(matchID, {id: id}); // send id to helper function
+          });
+        }
 
         // join partners
-        e.partners = e.partners.map(function(id) {
-          return db.partners.find(matchID, id);
-        });
+        if(!!e.partners && e.partners.length > 0) {
+          e.partners = e.partners.map(function(id) {
+            return db.partners.find(matchID, {id: id});
+          });
+        }
 
         // sort according to time
-        time.start = appRef.getEventStartTime(e);
-        time.end = appRef.getEventEndTime(e);
+        time.start = that.getEventStartTime(e);
+        time.end = that.getEventEndTime(e);
         if(time.now >= time.start && time.now <= time.end) { // live event
           events.now = i;
           events.isLive = true;
@@ -270,10 +274,10 @@ var app = new Vue({
       // set
       // https://vuejs.org/v2/guide/reactivity.html#Change-Detection-Caveats
       this.$set(this.now, 'status', (events.isLive ? 'LIVE' : 'SOON'));
-      this.$set(this.now, 'event', (events.now != null ? rows[events.now] : null));
-      this.$set(this.next, 'event', (events.next != null ? rows[events.next] : null));
+      this.$set(this.now, 'event', (events.now != null ? db.events[events.now] : null));
+      this.$set(this.next, 'event', (events.next != null ? db.events[events.next] : null));
       this.$set(this.history, 'events', events.history.map(function(k) {
-        return rows[k];
+        return db.events[k];
       }));
     },
     getError: function(responses) {
