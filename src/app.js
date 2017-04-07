@@ -205,7 +205,7 @@ var app = new Vue({
     },
     getSuccess: function(responses) {
       var that = this;
-      
+
       // get db ready
       var db = {};
       tables.forEach(function(name, i) {
