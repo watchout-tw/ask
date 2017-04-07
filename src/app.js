@@ -191,12 +191,8 @@ Vue.component('event-in-list', {
   `,
 });
 
-// Readonly key
-var airtableKey = 'keyFcWwzNgkQUNPBh';
-const maxSize = 3;
-
-var testData = null;
-
+// list (in order) tables (JSON files)
+var tables = ['events', 'guests', 'partners'];
 var app = new Vue({
   el: '#app',
   methods: {
@@ -207,46 +203,67 @@ var app = new Vue({
     getEventEndTime: function(e) {
       return Math.round(new Date(e.date + 'T' + (e.end.length < 5 ? '0' : '') + e.end + "+08:00").getTime()/1000);
     },
-    getSuccess: function(response) {
-      var appRef = this;
-      var rows = response.body.records.map(function(r) {
-        return r.fields;
-      });
-      rows.sort(function(a, b) {
-        return appRef.getEventStartTime(b) - appRef.getEventStartTime(a);
+    getSuccess: function(responses) {
+      var that = this;
+
+      // get db ready
+      var db = {};
+      tables.forEach(function(name, i) {
+        db[name] = responses[i].body.records.map(function(r) {
+          return r.fields;
+        });
       });
 
-      // process rows
-      var time = {
+      // Sort events by start time
+      db.events.sort(function(a, b) {
+        return that.getEventStartTime(b) - that.getEventStartTime(a);
+      });
+
+      // Join tables & sort events into groups
+      var time = { // helper variables
+        twoDays: 2*24*60*60,
         now: Math.round(new Date().getTime()/1000),
         start: 0,
         end: 0,
       };
-      var twoDays = 2*24*60*60;
-      var events = {
+      var events = { // event groups
         isLive: false,
         now: null,
         next: null,
         history: [],
       };
-      rows.forEach(function(v, k) {
-        time.start = appRef.getEventStartTime(v);
-        time.end = appRef.getEventEndTime(v);
+      var matchID = function(element) { // helper function to match IDs
+        return (this === element.id);
+      };
+      db.events.forEach(function(e, i) {
+        // join guests
+        e.guests = e.guests.map(function(id) {
+          return db.guests.find(matchID, id);
+        });
+
+        // join partners
+        e.partners = e.partners.map(function(id) {
+          return db.partners.find(matchID, id);
+        });
+
+        // sort according to time
+        time.start = appRef.getEventStartTime(e);
+        time.end = appRef.getEventEndTime(e);
         if(time.now >= time.start && time.now <= time.end) { // live event
-          events.now = k;
+          events.now = i;
           events.isLive = true;
         }
         else if(time.now < time.start) { // future event
-          if(time.start - time.now <= twoDays) {
-            events.now = k;
+          if(time.start - time.now <= time.twoDays) {
+            events.now = i;
             events.isLive = false;
           }
           else {
-            events.next = k;
+            events.next = i;
           }
         }
         else {
-          events.history.push(k);
+          events.history.push(i);
         }
       });
 
@@ -259,14 +276,15 @@ var app = new Vue({
         return rows[k];
       }));
     },
-    getError: function(response) {
-      console.error(response);
+    getError: function(responses) {
+      console.error(responses);
     },
   },
   created: function() { // do not use arrow function here
-    Vue.http.headers.common['Authorization'] = 'Bearer '.concat(airtableKey);
-    var reqUrl = 'https://api.airtable.com/v0/apppL3V4r4Tqf0nhR/Events?maxRecords='.concat(maxSize).concat('&view=Main');
-    Vue.http.get(reqUrl).then(this.getSuccess, this.getError);
+    // load all tables (JSON files)
+    Promise.all(tables.map(function(name) {
+      return Vue.http.get('data/' + name + '.json');
+    })).then(this.getSuccess, this.getError);
   },
   data: {
     generatedAt: new Date(),
