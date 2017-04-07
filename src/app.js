@@ -107,7 +107,7 @@ Vue.component('event-with-player', {
           <date :dateString="e.date"></date>
           <time-period :start="e.start" :end="e.end"></time-period>
         </div>
-        <div class="partners text-sm-right" v-if="e.partners.length > 0">
+        <div class="partners text-sm-right" v-if="!!e.partners && e.partners.length > 0">
           <ul class="list list-unstyled"><label>合作夥伴</label>
             <partner v-for="p in e.partners" :key="p.name" :p="p"></partner>
           </ul>
@@ -132,14 +132,14 @@ Vue.component('event-with-signup', {
           <div class="description pgroup">
             {{ e.description }}
           </div>
-          <div v-if="e.partners.length > 0" class="partners">
+          <div v-if="!!e.partners && e.partners.length > 0" class="partners">
             <ul class="list list-unstyled"><label>合作夥伴</label>
               <partner v-for="p in e.partners" :key="p.name" :p="p"></partner>
             </ul>
           </div>
         </div>
         <div class="col-md col-lg-8">
-          <div class="guests">
+          <div v-if="!!e.guests && e.guests.length > 0" class="guests">
             <ul class="list list-unstyled d-flex flex-row flex-wrap justify-content-center justify-content-md-start">
               <guest v-for="g in e.guests" :key="g.name" :g="g"></guest><a class="guest signup" :href="e.signup" target="signup"><div class="photo"></div></a>
             </ul>
@@ -177,7 +177,7 @@ Vue.component('event-in-list', {
       <date :dateString="e.date"></date>
       <h3 class="title">{{ e.title }}</h3>
     </div>
-    <div class="guests">
+    <div v-if="!!e.guests && e.guests.length > 0" class="guests">
       <ul class="list list-unstyled d-flex flex-row flex-wrap justify-content-end">
         <guest v-for="g in e.guests" :key="g.name" :g="g" :class="classes.guest"></guest>
       </ul>
@@ -191,30 +191,101 @@ Vue.component('event-in-list', {
   `,
 });
 
+// Readonly key
+var airtableKey = 'keyFcWwzNgkQUNPBh';
+const maxSize = 3;
+
+var testData = null;
+
 var app = new Vue({
   el: '#app',
+  methods: {
+    // do not use arrow function here
+    getEventStartTime: function(e) {
+      return Math.round(new Date(e.date + 'T' + (e.start.length < 5 ? '0' : '') + e.start + "+08:00").getTime()/1000);
+    },
+    getEventEndTime: function(e) {
+      return Math.round(new Date(e.date + 'T' + (e.end.length < 5 ? '0' : '') + e.end + "+08:00").getTime()/1000);
+    },
+    getSuccess: function(response) {
+      var appRef = this;
+      var rows = response.body.records.map(function(r) {
+        return r.fields;
+      });
+      rows.sort(function(a, b) {
+        return appRef.getEventStartTime(b) - appRef.getEventStartTime(a);
+      });
+
+      // process rows
+      var time = {
+        now: Math.round(new Date().getTime()/1000),
+        start: 0,
+        end: 0,
+      };
+      var twoDays = 2*24*60*60;
+      var events = {
+        isLive: false,
+        now: null,
+        next: null,
+        history: [],
+      };
+      rows.forEach(function(v, k) {
+        time.start = appRef.getEventStartTime(v);
+        time.end = appRef.getEventEndTime(v);
+        if(time.now >= time.start && time.now <= time.end) { // live event
+          events.now = k;
+          events.isLive = true;
+        }
+        else if(time.now < time.start) { // future event
+          if(time.start - time.now <= twoDays) {
+            events.now = k;
+            events.isLive = false;
+          }
+          else {
+            events.next = k;
+          }
+        }
+        else {
+          events.history.push(k);
+        }
+      });
+
+      // set
+      // https://vuejs.org/v2/guide/reactivity.html#Change-Detection-Caveats
+      this.$set(this.now, 'status', (events.isLive ? 'LIVE' : 'SOON'));
+      this.$set(this.now, 'event', (events.now != null ? rows[events.now] : null));
+      this.$set(this.next, 'event', (events.next != null ? rows[events.next] : null));
+      this.$set(this.history, 'events', events.history.map(function(k) {
+        return rows[k];
+      }));
+    },
+    getError: function(response) {
+      console.error(response);
+    },
+  },
+  created: function() { // do not use arrow function here
+    Vue.http.headers.common['Authorization'] = 'Bearer '.concat(airtableKey);
+    var reqUrl = 'https://api.airtable.com/v0/apppL3V4r4Tqf0nhR/Events?maxRecords='.concat(maxSize).concat('&view=Main');
+    Vue.http.get(reqUrl).then(this.getSuccess, this.getError);
+  },
   data: {
     generatedAt: new Date(),
     cover: {
       title: '沃草給問擂台',
       image: 'opening.png',
     },
-    now: events.now ? {
+    now: {
       title: 'NOW',
-      status: (events.isLive ? 'LIVE' : 'SOON'),
-      event: events.now,
-    } : null,
-    next: events.next ? {
+    },
+    next: {
       title: 'NEXT',
-      event: events.next,
-    } : null,
+    },
     intro: {
       title: '什麼是給問？',
       content: ['生如正動實分友時況；愛相氣還算民西毒期先師經運向才管不的後些十？公自本般；自一覺半，的真明義養，我我社白但送改準行品高表也景、理天天廣人性眾十率親想的南。數這東，都為由體當安火，坐中西我在那者不共一小支爸公眼國一參人我！了的出一北失全整求預率眼，輕的？'],
     },
     history: {
       title: '歷史紀錄',
-      events: events.history,
     }
   },
   computed: {
