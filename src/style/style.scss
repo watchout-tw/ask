@@ -82,15 +82,15 @@ section {
 }
 .logo-small {
   &.musou {
-    background-image: url(../../asset/logo/musou/small.png);
+    background-image: url(../asset/logo/musou/small.png);
   }
   &.woo {
-    background-image: url(../../asset/logo/woo/small.png);
+    background-image: url(../asset/logo/woo/small.png);
   }
 }
 .icon-small {
   &.transcript {
-    background-image: url(../../asset/icon/transcript/small.png);
+    background-image: url(../asset/icon/transcript/small.png);
   }
 }
 
@@ -106,7 +106,7 @@ section {
 /* Page-specific styles */
 
 body {
-  background-image: url(../../asset/demo.png);
+  background-image: url(../asset/demo.png);
 }
 
 section {
@@ -152,13 +152,15 @@ section {
   }
   &#cover {
     height: 0;
-    padding-bottom: 66.666667%;
+    padding-bottom: 88.8888889%;
     @include placeholder;
+    background-image: url(../asset/opening+background-sq.png);
   }
 }
 @media (min-width: 576px) {
   section#cover {
     padding-bottom: 50%;
+    background-image: url(../asset/opening+background-wide.png);
   }
 }
 .player {
@@ -237,7 +239,7 @@ section {
   &.signup {
     > .photo {
       background-color: $color-ask;
-      background-image: url(../../asset/+1.png);
+      background-image: url(../asset/+1.png);
       background-size: contain;
       background-position: center center;
       box-shadow: 0px 2px 6px $color-shadow;

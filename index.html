@@ -6,7 +6,7 @@
   <script src="https://use.typekit.net/mub1lty.js"></script>
   <script>try{Typekit.load({ async: true });}catch(e){}</script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="./dist/css/style.css">
+  <link rel="stylesheet" type="text/css" href="./css/style.css">
   <link rel="icon" href="./asset/favicon.png">
   <title>沃草→給問擂台←</title>
 </head>
@@ -15,7 +15,7 @@
     <nav class="navbar sticky-top navbar-light bg-ask">
       <a class="navbar-brand" href="https://ask.watchout.tw/"><img src="./asset/logo+type.png" class="logo-type"/></a>
     </nav>
-    <section id="cover" :title="cover.title" :style="styles.cover"></section>
+    <section id="cover" :title="cover.title"></section>
     <section id="now" v-if="now.event">
       <div class="label bg-musou-light" :status="now.status">
         <div class="lightbulb d-inline-block align-top animate-flicker"><div class="bulb"></div></div><label class="d-inline-block align-top">{{ now.status }}</label>

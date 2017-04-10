@@ -91,12 +91,12 @@ section {
   background-position: center center; }
 
 .logo-small.musou {
-  background-image: url(../../asset/logo/musou/small.png); }
+  background-image: url(../asset/logo/musou/small.png); }
 .logo-small.woo {
-  background-image: url(../../asset/logo/woo/small.png); }
+  background-image: url(../asset/logo/woo/small.png); }
 
 .icon-small.transcript {
-  background-image: url(../../asset/icon/transcript/small.png); }
+  background-image: url(../asset/icon/transcript/small.png); }
 
 /* Watchout Commons-specific additional styles */
 .pgroup {
@@ -107,7 +107,7 @@ section {
 
 /* Page-specific styles */
 body {
-  background-image: url(../../asset/demo.png); }
+  background-image: url(../asset/demo.png); }
 
 section > .label {
   font-family: "Space Mono", monospace;
@@ -139,14 +139,16 @@ section > .label {
     border: 4px #FF5368 solid; }
 section#cover {
   height: 0;
-  padding-bottom: 66.666667%;
+  padding-bottom: 88.8888889%;
   background-color: rgba(0, 0, 0, 0.04);
   background-size: cover;
-  background-position: center center; }
+  background-position: center center;
+  background-image: url(../asset/opening+background-sq.png); }
 
 @media (min-width: 576px) {
   section#cover {
-    padding-bottom: 50%; } }
+    padding-bottom: 50%;
+    background-image: url(../asset/opening+background-wide.png); } }
 .player {
   max-width: 60rem;
   margin: 0 auto;
@@ -206,7 +208,7 @@ section#cover {
     width: 12rem; }
   .guest.signup > .photo {
     background-color: #4DEBDF;
-    background-image: url(../../asset/+1.png);
+    background-image: url(../asset/+1.png);
     background-size: contain;
     background-position: center center;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25); }

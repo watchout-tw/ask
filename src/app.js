@@ -294,7 +294,6 @@ var app = new Vue({
     generatedAt: new Date(),
     cover: {
       title: '沃草給問擂台',
-      image: 'opening.png',
     },
     now: {
       title: 'NOW',
@@ -311,12 +310,5 @@ var app = new Vue({
     }
   },
   computed: {
-    styles: function() {
-      return {
-        cover: {
-          backgroundImage: 'url(asset/' + this.cover.image + ')'
-        }
-      };
-    }
-  }
+  },
 });
