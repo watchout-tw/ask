@@ -1,3 +1,8 @@
+Vue.component('support', {
+  template: `
+  <a class="support" href="http://watchout.tw/#support" target="support"></a>
+  `,
+});
 Vue.component('guest', {
   props: {
     g: {

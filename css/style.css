@@ -29,6 +29,7 @@
 /* Colors */
 /* Typography */
 /* Mixin */
+/* Bootstrap breakpoints */
 /* General override */
 h1, h2, h3 {
   font-family: "noto-serif-patch", "source-han-serif-tc", serif;
@@ -47,7 +48,8 @@ a, a:hover {
   list-style: none; }
 
 .navbar, .navbar-brand {
-  padding: 0; }
+  padding: 0;
+  z-index: 1; }
 
 /* Watchout Commons-specific additional styles */
 .bg-ask {
@@ -144,11 +146,11 @@ section#cover {
   background-size: cover;
   background-position: center center;
   background-image: url(../asset/opening+background-sq.png); }
+  @media (min-width: 576px) {
+    section#cover {
+      padding-bottom: 50%;
+      background-image: url(../asset/opening+background-wide.png); } }
 
-@media (min-width: 576px) {
-  section#cover {
-    padding-bottom: 50%;
-    background-image: url(../asset/opening+background-wide.png); } }
 .player {
   max-width: 60rem;
   margin: 0 auto;
@@ -243,5 +245,22 @@ section#cover {
     .event-in-list.guest-one .info {
       position: absolute;
       top: 0; }
+
+.support {
+  display: block;
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-image: url(../asset/support.png);
+  background-size: contain;
+  z-index: 2;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25); }
+  @media (min-width: 576px) {
+    .support {
+      width: 84px;
+      height: 84px; } }
 
 /*# sourceMappingURL=style.css.map */

@@ -25,3 +25,11 @@ $font-size-small: 0.875rem;
 @mixin font-serif {
   font-family: "noto-serif-patch", "source-han-serif-tc", serif;
 }
+
+/* Bootstrap breakpoints */
+$bp-large: 576px;
+@mixin large {
+  @media (min-width: #{$bp-large}) {
+    @content;
+  }
+}
