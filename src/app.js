@@ -100,9 +100,10 @@ Vue.component('event-with-player', {
   mixins: [mxEvent],
   template: `
   <div class="event event-with-player">
-    <div class="player">
-      <div class="embed-responsive embed-responsive-16by9">
-        <iframe class="embed-responsive-item" :style="player.styles"></iframe>
+    <div class="player-container">
+      <div class="player embed-responsive embed-responsive-16by9" @click="play">
+        <div class="content embed-responsive-item" :style="player.styles"></div>
+        <div class="play"></div>
       </div>
     </div>
     <div class="container-fluid container-960">
@@ -121,6 +122,14 @@ Vue.component('event-with-player', {
     </div>
   </div>
   `,
+  methods: {
+    play: function(event) {
+      console.log('play');
+      var url = 'https://www.youtube.com/embed/' + this.youtubeID + '?autoplay=1';
+      $('.player > .content').replaceWith('<iframe class="content embed-responsive-item" src="' + url + '" frameborder="0" allowfullscreen></iframe>');
+      $('.player > .play').fadeOut();
+    },
+  }
 });
 Vue.component('event-with-signup', {
   mixins: [mxEvent],

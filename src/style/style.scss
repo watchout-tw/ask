@@ -64,7 +64,12 @@ section {
   padding-bottom: 2rem;
 }
 .container-960 {
-  max-width: 990px;
+  max-width: 960px + 15px*2;
+  margin-left: auto;
+  margin-right: auto;
+}
+.max-width-960 {
+  max-width: 960px;
 }
 
 // Navbar
@@ -110,11 +115,15 @@ body {
   background-image: url(../asset/demo.png);
 }
 
+$section-label-size: 3rem;
+$sqrt-3: 1.732051;
+
 section {
   > .label {
     @include font-monospace;
+    position: relative;
     height: 3rem;
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
     font-weight: bold;
     font-size: 1.5rem;
@@ -157,20 +166,63 @@ section {
     @include placeholder;
     background-image: url(../asset/opening+background-sq.png);
 
-    @include large {
+    @include bp-sm-up {
       padding-bottom: 50%;
       background-image: url(../asset/opening+background-wide.png);
     }
   }
-}
-.player {
-  max-width: 60rem;
-  margin: 0 auto;
-  @include placeholder;
-  .embed-responsive-item {
-    background-size: contain;
+  &#now {
+    @include bp-sm-up {
+      padding-top: 2rem;
+      > .label {
+        width: 6rem;
+
+        &:before, &:after {
+          position: absolute;
+          content: '';
+          display: inline-block;
+          width: 0;
+          height: 0;
+        }
+        &:before {
+          border-bottom: $section-label-size rgba($color-musou, 0.25) solid;
+	        border-left: $section-label-size/$sqrt-3 transparent solid;
+          right: 100%;
+        }
+        &:after {
+          border-top: $section-label-size rgba($color-musou, 0.25) solid;
+          border-right: $section-label-size/$sqrt-3 transparent solid;
+          left: 100%;
+        }
+      }
+    }
   }
 }
+.player-container {
+  width: 100%;
+  > .player {
+    position: relative;
+    max-width: 60rem;
+    margin: 0 auto;
+    @include placeholder;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
+    > .embed-responsive-item {
+      background-size: contain;
+    }
+    > .play {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 86px;
+      height: 86px;
+      background-image: url(../asset/play.png);
+      background-size: contain;
+      cursor: pointer;
+    }
+  }
+}
+
 .partners > ul {
   > label {
     font-size: $font-size-small;
@@ -302,7 +354,7 @@ section {
   z-index: 2;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
 
-  @include large {
+  @include bp-sm-up {
     width: 84px;
     height: 84px;
   }
