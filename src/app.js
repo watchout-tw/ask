@@ -124,7 +124,6 @@ Vue.component('event-with-player', {
   `,
   methods: {
     play: function(event) {
-      console.log('play');
       var url = 'https://www.youtube.com/embed/' + this.youtubeID + '?autoplay=1';
       $('.player > .content').replaceWith('<iframe class="content embed-responsive-item" src="' + url + '" frameborder="0" allowfullscreen></iframe>');
       $('.player > .play').fadeOut();
@@ -206,7 +205,26 @@ Vue.component('event-in-list', {
 });
 
 // list (in order) tables (JSON files)
-var tables = ['events', 'guests', 'partners'];
+var tables = [
+  {
+    name: 'events',
+    validator: function(r) {
+      return !!r.fields.title && !!r.fields.date && !!r.fields.start && !!r.fields.end;
+    },
+  },
+  {
+    name: 'guests',
+    validator: function(r) {
+      return !!r.fields.name;
+    },
+  },
+  {
+    name: 'partners',
+    validator: function(r) {
+      return !!r.fields.name;
+    },
+  }
+];
 var app = new Vue({
   el: '#app',
   methods: {
@@ -222,8 +240,8 @@ var app = new Vue({
 
       // get db ready
       var db = {};
-      tables.forEach(function(name, i) {
-        db[name] = responses[i].body.records.map(function(r) {
+      tables.forEach(function(table, i) {
+        db[table.name] = responses[i].body.records.filter(table.validator).map(function(r) {
           return Object.assign(r.fields, {id: r.id}); // add id to fields
         });
       });
@@ -300,8 +318,8 @@ var app = new Vue({
   },
   created: function() { // do not use arrow function here
     // load all tables (JSON files)
-    Promise.all(tables.map(function(name) {
-      return Vue.http.get('data/' + name + '.json');
+    Promise.all(tables.map(function(table) {
+      return Vue.http.get('data/' + table.name + '.json');
     })).then(this.getSuccess, this.getError);
   },
   data: {
