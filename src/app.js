@@ -1,8 +1,3 @@
-Vue.component('support', {
-  template: `
-  <a class="support" href="http://watchout.tw/#support" target="support"></a>
-  `,
-});
 Vue.component('guest', {
   props: {
     g: {
@@ -196,9 +191,9 @@ Vue.component('event-in-list', {
       </ul>
     </div>
     <div class="links d-flex" :class="classes.links">
-      <a class="link" v-if="e.livestream" :href="e.livestream" target="livestream"><div class="logo logo-small woo"></div><span>直播</span></a>
-      <a class="link" v-if="e.report" :href="e.report" target="report"><div class="logo logo-small musou"></div><span>報導</span></a>
-      <a class="link" v-if="e.transcript" :href="e.transcript" target="transcript"><div class="icon icon-small transcript"></div><span>逐字稿</span></a>
+      <a class="link a-block" v-if="e.livestream" :href="e.livestream" target="livestream"><div class="logo logo-small woo"></div><div class="label"><span class="a-target">直播</span></div></a>
+      <a class="link a-block" v-if="e.report" :href="e.report" target="report"><div class="logo logo-small musou"></div><div class="label"><span class="a-target">報導</span></div></a>
+      <a class="link a-block" v-if="e.transcript" :href="e.transcript" target="transcript"><div class="icon icon-small transcript"></div><div class="label"><span class="a-target">逐字稿</span></div></a>
     </div>
   </div>
   `,
@@ -323,6 +318,10 @@ var app = new Vue({
     })).then(this.getSuccess, this.getError);
   },
   data: {
+    common: {
+      home: 'http://watchout.tw/',
+      support: 'http://watchout.tw/#support',
+    },
     generatedAt: new Date(),
     cover: {
       title: '沃草給問擂台',
@@ -339,7 +338,54 @@ var app = new Vue({
     },
     history: {
       title: '歷史紀錄',
-    }
+    },
+    footer: {
+      island: {
+        image: 'asset/island.png',
+      },
+      social: [
+        {
+          type: 'facebook',
+          image: 'https://graph.facebook.com/WatchoutTW/picture?type=large',
+          message: '追蹤我們的最新動態！',
+          link: 'https://facebook.com/WatchoutTW/',
+        },
+        {
+          type: 'LINE',
+          image: 'asset/goodfriend.png',
+          message: '阿草好朋友',
+          link: 'https://store.line.me/stickershop/product/1024870/zh-Hant',
+        },
+        {
+          type: 'LINE',
+          image: 'asset/goodcitizen.png',
+          message: '阿草督督好',
+          link: 'https://store.line.me/stickershop/product/1224270/zh-Hant',
+        },
+      ],
+      other: [
+        {
+          title: '透明報告',
+          image: '',
+          link: 'http://watchout.tw/transparency/2014',
+        },
+        {
+          title: '影響力報告',
+          image: '',
+          link: 'http://watchout.tw/impact/2016',
+        },
+        {
+          title: '聯絡我們',
+          image: '',
+          link: 'http://watchout.tw/contact',
+        },
+        {
+          title: '授權條款',
+          image: '',
+          link: 'http://watchout.tw/license',
+        }
+      ],
+    },
   },
   computed: {
   },

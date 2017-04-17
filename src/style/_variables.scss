@@ -1,9 +1,11 @@
 /* Colors */
 
+$color-watchout: #50E3C2;
 $color-ask: #4DEBDF;
 $color-musou: #FF5368;
 $color-placeholder: rgba(0, 0, 0, 0.65);
 $color-shadow: rgba(0, 0, 0, 0.25);
+$color-nice-grey: #4a4a4a;
 
 /* Typography */
 
@@ -24,6 +26,13 @@ $font-size-small: 0.875rem;
 }
 @mixin font-serif {
   font-family: "noto-serif-patch", "source-han-serif-tc", serif;
+}
+@mixin underline {
+  background-image: linear-gradient(to right, $color-ask 0%, $color-ask 100%);
+  background-position: center;
+  background-repeat: repeat-x;
+  background-size: 0.5em 0.25em;
+  background-blend-mode: multiply;
 }
 
 /* Bootstrap breakpoint */

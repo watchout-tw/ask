@@ -11,8 +11,47 @@ h1, h2, h3 {
 label {
   margin: 0;
 }
-a, a:hover {
-  color: blue;
+img {
+  display: block;
+}
+a {
+  &, &:hover, &:focus, &:active, &:visited {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  &.a-text {
+    display: inline;
+    &:hover, &:focus, &:active {
+      @include underline;
+    }
+  }
+  &.a-block {
+    display: block;
+    &:hover, &:focus, &:active {
+      .a-target {
+        @include underline;
+      }
+    }
+  }
+}
+.close {
+  float: none;
+  display: block;
+  position: absolute;
+  top: -0.5rem;
+  right: -2px;
+  font-size: 2rem;
+  line-height: 1;
+  border-bottom-width: 4px;
+  font-weight: normal;
+  text-shadow: none;
+  cursor: pointer;
+
+  &, &:hover, &:focus {
+    color: inherit;
+    opacity: 1;
+  }
 }
 
 // List
@@ -320,7 +359,7 @@ section {
   .links {
     > .link {
       margin-right: 0.5rem;
-      > .logo-small, > .icon-small, > span {
+      > .logo-small, > .icon-small, > .label {
         display: inline-block;
         vertical-align: top;
       }
@@ -342,20 +381,95 @@ section {
   }
 }
 .support {
-  display: block;
   position: fixed;
   top: 12px;
   right: 12px;
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  background-image: url(../asset/support.png);
-  background-size: contain;
   z-index: 2;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
 
-  @include bp-sm-up {
-    width: 84px;
-    height: 84px;
+  > .button {
+    display: block;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background-image: url(../asset/support.png);
+    background-size: contain;
+
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+
+    @include bp-sm-up {
+      width: 84px;
+      height: 84px;
+    }
+  }
+}
+
+footer {
+  margin-top: 100px;
+  background: linear-gradient(to bottom, rgba($color-ask, 0), rgba($color-ask, 100));
+
+  > .island, > .social, > .other {
+    display: block;
+    margin: 0 auto;
+    width: 20rem;
+  }
+  > .social {
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    > .group {
+      margin: 2rem;
+      > .link {
+        > .image {
+          display: block;
+          position: relative;
+          margin: 0 auto;
+          width: 5.625rem;
+
+          > img {
+            width: 100%;
+          }
+          > .type {
+            position: absolute;
+            top: -0.5rem;
+            left: -0.5rem;
+            width: 1.625rem;
+            height: 1.625rem;
+            background-size: contain;
+          }
+        }
+        > .message {
+          @include font-serif;
+          font-weight: bold;
+          font-size: 1.125rem;
+          color: $color-nice-grey;
+          transform: translate(2rem, -0.5rem) rotate(-15deg);
+        }
+      }
+
+      &[type="facebook"] > .link > .image > .type {
+        background-image: url(../asset/social/facebook/round.png);
+      }
+      &[type="LINE"] > .link > .image > .type {
+        background-image: url(../asset/social/LINE/round.png);
+      }
+    }
+  }
+
+  > .other {
+    > .item {
+      display: inline-block;
+      width: 50%;
+      margin: 0.5rem 0;
+      color: $color-nice-grey;
+      text-align: center;
+    }
+  }
+
+  > .wo {
+    width: 194px;
+    margin: 0 auto;
+    padding: 2rem 0 6rem;
+    > img {
+      width: 100%;
+    }
   }
 }

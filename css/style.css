@@ -38,8 +38,45 @@ h1, h2, h3 {
 label {
   margin: 0; }
 
-a, a:hover {
-  color: blue; }
+img {
+  display: block; }
+
+a, a:hover, a:focus, a:active, a:visited {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer; }
+a.a-text {
+  display: inline; }
+  a.a-text:hover, a.a-text:focus, a.a-text:active {
+    background-image: linear-gradient(to right, #4DEBDF 0%, #4DEBDF 100%);
+    background-position: center;
+    background-repeat: repeat-x;
+    background-size: 0.5em 0.25em;
+    background-blend-mode: multiply; }
+a.a-block {
+  display: block; }
+  a.a-block:hover .a-target, a.a-block:focus .a-target, a.a-block:active .a-target {
+    background-image: linear-gradient(to right, #4DEBDF 0%, #4DEBDF 100%);
+    background-position: center;
+    background-repeat: repeat-x;
+    background-size: 0.5em 0.25em;
+    background-blend-mode: multiply; }
+
+.close {
+  float: none;
+  display: block;
+  position: absolute;
+  top: -0.5rem;
+  right: -2px;
+  font-size: 2rem;
+  line-height: 1;
+  border-bottom-width: 4px;
+  font-weight: normal;
+  text-shadow: none;
+  cursor: pointer; }
+  .close, .close:hover, .close:focus {
+    color: inherit;
+    opacity: 1; }
 
 .list-unstyled {
   margin-top: 0;
@@ -271,7 +308,7 @@ section#cover {
     display: none; }
   .event-in-list .links > .link {
     margin-right: 0.5rem; }
-    .event-in-list .links > .link > .logo-small, .event-in-list .links > .link > .icon-small, .event-in-list .links > .link > span {
+    .event-in-list .links > .link > .logo-small, .event-in-list .links > .link > .icon-small, .event-in-list .links > .link > .label {
       display: inline-block;
       vertical-align: top; }
     .event-in-list .links > .link > .logo-small, .event-in-list .links > .link > .icon-small {
@@ -286,20 +323,70 @@ section#cover {
       top: 0; }
 
 .support {
-  display: block;
   position: fixed;
   top: 12px;
   right: 12px;
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  background-image: url(../asset/support.png);
-  background-size: contain;
-  z-index: 2;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25); }
-  @media (min-width: 576px) {
-    .support {
-      width: 84px;
-      height: 84px; } }
+  z-index: 2; }
+  .support > .button {
+    display: block;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background-image: url(../asset/support.png);
+    background-size: contain;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25); }
+    @media (min-width: 576px) {
+      .support > .button {
+        width: 84px;
+        height: 84px; } }
+
+footer {
+  margin-top: 100px;
+  background: linear-gradient(to bottom, rgba(77, 235, 223, 0), #4debdf); }
+  footer > .island, footer > .social, footer > .other {
+    display: block;
+    margin: 0 auto;
+    width: 20rem; }
+  footer > .social {
+    margin-top: 5rem;
+    margin-bottom: 5rem; }
+    footer > .social > .group {
+      margin: 2rem; }
+      footer > .social > .group > .link > .image {
+        display: block;
+        position: relative;
+        margin: 0 auto;
+        width: 5.625rem; }
+        footer > .social > .group > .link > .image > img {
+          width: 100%; }
+        footer > .social > .group > .link > .image > .type {
+          position: absolute;
+          top: -0.5rem;
+          left: -0.5rem;
+          width: 1.625rem;
+          height: 1.625rem;
+          background-size: contain; }
+      footer > .social > .group > .link > .message {
+        font-family: "noto-serif-patch", "source-han-serif-tc", serif;
+        font-weight: bold;
+        font-size: 1.125rem;
+        color: #4a4a4a;
+        transform: translate(2rem, -0.5rem) rotate(-15deg); }
+      footer > .social > .group[type="facebook"] > .link > .image > .type {
+        background-image: url(../asset/social/facebook/round.png); }
+      footer > .social > .group[type="LINE"] > .link > .image > .type {
+        background-image: url(../asset/social/LINE/round.png); }
+  footer > .other > .item {
+    display: inline-block;
+    width: 50%;
+    margin: 0.5rem 0;
+    color: #4a4a4a;
+    text-align: center; }
+  footer > .wo {
+    width: 194px;
+    margin: 0 auto;
+    padding: 2rem 0 6rem; }
+    footer > .wo > img {
+      width: 100%; }
 
 /*# sourceMappingURL=style.css.map */
