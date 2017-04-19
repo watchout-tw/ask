@@ -1,5 +1,3 @@
-@import url("http://watchout.tw/fonts/noto-serif-patch/styles.css");
-@import url("https://fonts.googleapis.com/css?family=Space+Mono:400,400i,700,700i");
 @keyframes animationFlicker {
   0% {
     opacity: 1; }
@@ -236,7 +234,7 @@ section#cover {
       background-size: contain;
       cursor: pointer; }
 
-.partners > ul > label {
+.organizers > ul > label {
   font-size: 0.875rem;
   font-weight: 500; }
 
@@ -263,7 +261,7 @@ section#cover {
     margin: 0.5rem 0; }
   .event .guests {
     margin: 0 -0.5rem; }
-  .event .partners {
+  .event .organizers {
     margin: 0.5rem 0; }
 
 .guest {
@@ -324,7 +322,7 @@ section#cover {
 
 .support {
   position: fixed;
-  top: 12px;
+  bottom: 12px;
   right: 12px;
   z-index: 2; }
   .support > .button {
@@ -346,7 +344,8 @@ footer {
   footer > .island, footer > .social, footer > .other {
     display: block;
     margin: 0 auto;
-    width: 20rem; }
+    width: 100%;
+    max-width: 24rem; }
   footer > .social {
     margin-top: 5rem;
     margin-bottom: 5rem; }
@@ -383,7 +382,7 @@ footer {
     color: #4a4a4a;
     text-align: center; }
   footer > .wo {
-    width: 194px;
+    width: 9rem;
     margin: 0 auto;
     padding: 2rem 0 6rem; }
     footer > .wo > img {

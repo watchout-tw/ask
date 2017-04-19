@@ -108,9 +108,9 @@ Vue.component('event-with-player', {
           <date :dateString="e.date"></date>
           <time-period :start="e.start" :end="e.end"></time-period>
         </div>
-        <div class="partners text-sm-right" v-if="!!e.partners && e.partners.length > 0">
+        <div class="organizers text-sm-right" v-if="!!e.organizers && e.organizers.length > 0">
           <ul class="list list-unstyled"><label>合作夥伴</label>
-            <partner v-for="p in e.partners" :key="p.name" :p="p"></partner>
+            <partner v-for="p in e.organizers" :key="p.name" :p="p"></partner>
           </ul>
         </div>
       </div>
@@ -140,9 +140,9 @@ Vue.component('event-with-signup', {
           <div class="description pgroup">
             {{ e.description }}
           </div>
-          <div v-if="!!e.partners && e.partners.length > 0" class="partners">
+          <div v-if="!!e.organizers && e.organizers.length > 0" class="organizers">
             <ul class="list list-unstyled"><label>合作夥伴</label>
-              <partner v-for="p in e.partners" :key="p.name" :p="p"></partner>
+              <partner v-for="p in e.organizers" :key="p.name" :p="p"></partner>
             </ul>
           </div>
         </div>
@@ -270,9 +270,9 @@ var app = new Vue({
           });
         }
 
-        // join partners
-        if(!!e.partners && e.partners.length > 0) {
-          e.partners = e.partners.map(function(id) {
+        // join organizers
+        if(!!e.organizers && e.organizers.length > 0) {
+          e.organizers = e.organizers.map(function(id) {
             return db.partners.find(matchID, {id: id});
           });
         }
@@ -365,14 +365,14 @@ var app = new Vue({
       ],
       other: [
         {
-          title: '透明報告',
+          title: '2014 透明報告',
           image: '',
           link: 'http://watchout.tw/transparency/2014',
         },
         {
-          title: '影響力報告',
+          title: '歷年影響力報告',
           image: '',
-          link: 'http://watchout.tw/impact/2016',
+          link: 'http://watchout.tw/impact/',
         },
         {
           title: '聯絡我們',

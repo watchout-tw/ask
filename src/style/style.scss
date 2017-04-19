@@ -262,7 +262,7 @@ section {
   }
 }
 
-.partners > ul {
+.organizers > ul {
   > label {
     font-size: $font-size-small;
     font-weight: 500;
@@ -299,7 +299,7 @@ section {
   .guests {
     margin: 0 -0.5rem; // compensating the left+right margin of .guest
   }
-  .partners {
+  .organizers {
     margin: 0.5rem 0;
   }
 }
@@ -382,7 +382,7 @@ section {
 }
 .support {
   position: fixed;
-  top: 12px;
+  bottom: 12px;
   right: 12px;
   z-index: 2;
 
@@ -410,7 +410,8 @@ footer {
   > .island, > .social, > .other {
     display: block;
     margin: 0 auto;
-    width: 20rem;
+    width: 100%;
+    max-width: 24rem;
   }
   > .social {
     margin-top: 5rem;
@@ -465,7 +466,7 @@ footer {
   }
 
   > .wo {
-    width: 194px;
+    width: 9rem;
     margin: 0 auto;
     padding: 2rem 0 6rem;
     > img {
