@@ -318,10 +318,7 @@ var app = new Vue({
     })).then(this.getSuccess, this.getError);
   },
   data: {
-    common: {
-      home: 'http://watchout.tw/',
-      support: 'http://watchout.tw/#support',
-    },
+    common: CommonData,
     generatedAt: new Date(),
     cover: {
       title: '沃草給問擂台',
@@ -339,54 +336,5 @@ var app = new Vue({
     history: {
       title: '歷史紀錄',
     },
-    footer: {
-      island: {
-        image: 'asset/island.png',
-      },
-      social: [
-        {
-          type: 'facebook',
-          image: 'https://graph.facebook.com/WatchoutTW/picture?type=large',
-          message: '追蹤我們的最新動態！',
-          link: 'https://facebook.com/WatchoutTW/',
-        },
-        {
-          type: 'LINE',
-          image: 'asset/goodfriend.png',
-          message: '阿草好朋友',
-          link: 'https://store.line.me/stickershop/product/1024870/zh-Hant',
-        },
-        {
-          type: 'LINE',
-          image: 'asset/goodcitizen.png',
-          message: '阿草督督好',
-          link: 'https://store.line.me/stickershop/product/1224270/zh-Hant',
-        },
-      ],
-      other: [
-        {
-          title: '2014 透明報告',
-          image: '',
-          link: 'http://watchout.tw/transparency/2014',
-        },
-        {
-          title: '歷年影響力報告',
-          image: '',
-          link: 'http://watchout.tw/impact/',
-        },
-        {
-          title: '聯絡我們',
-          image: '',
-          link: 'http://watchout.tw/contact',
-        },
-        {
-          title: '授權條款',
-          image: '',
-          link: 'http://watchout.tw/license',
-        }
-      ],
-    },
-  },
-  computed: {
   },
 });
