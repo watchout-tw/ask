@@ -5,7 +5,7 @@ var CommonData = {
   },
   footer: {
     island: {
-      image: 'asset/island.png',
+      image: 'https://watchout.tw/asset/island.png',
     },
     social: [
       {
@@ -16,13 +16,13 @@ var CommonData = {
       },
       {
         type: 'LINE',
-        image: 'asset/goodfriend.png',
+        image: 'https://watchout.tw/asset/goodfriend.png',
         message: '阿草好朋友',
         link: 'https://store.line.me/stickershop/product/1024870/zh-Hant',
       },
       {
         type: 'LINE',
-        image: 'asset/goodcitizen.png',
+        image: 'https://watchout.tw/asset/goodcitizen.png',
         message: '阿草督督好',
         link: 'https://store.line.me/stickershop/product/1224270/zh-Hant',
       },
