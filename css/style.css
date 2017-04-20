@@ -133,12 +133,12 @@ section {
   background-position: center center; }
 
 .logo-small.musou {
-  background-image: url(../asset/logo/musou/small.png); }
+  background-image: url(https://watchout.tw/asset/logo/musou/small.png); }
 .logo-small.woo {
-  background-image: url(../asset/logo/woo/small.png); }
+  background-image: url(https://watchout.tw/asset/logo/woo/small.png); }
 
 .icon-small.transcript {
-  background-image: url(../asset/icon/transcript/small.png); }
+  background-image: url(https://watchout.tw/asset/icon/transcript/small.png); }
 
 /* Watchout Commons-specific additional styles */
 .pgroup {
@@ -330,7 +330,6 @@ section#cover {
     width: 64px;
     height: 64px;
     border-radius: 50%;
-    background-image: url(../asset/support.png);
     background-size: contain;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25); }
     @media (min-width: 576px) {

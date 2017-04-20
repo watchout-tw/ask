@@ -3,6 +3,11 @@ var CommonData = {
     home: 'https://watchout.tw/',
     support: 'https://watchout.tw/#support',
   },
+  support: {
+    style: {
+      backgroundImage: 'url(https://watchout.tw/asset/support.png)',
+    },
+  },
   footer: {
     island: {
       image: 'https://watchout.tw/asset/island.png',
@@ -49,6 +54,10 @@ var CommonData = {
         link: 'http://watchout.tw/license',
       }
     ],
+    wo: {
+      black: 'https://watchout.tw/asset/wo/full/black.png',
+      white: 'https://watchout.tw/asset/wo/full/white.png',
+    },
   },
 };
 var mxCommon = {
@@ -81,7 +90,7 @@ Vue.component('w-footer', {
   },
   template: `
   <footer>
-    <img class="island" src="asset/island.png" />
+    <img class="island" :src="common.footer.island.image" />
     <div class="social">
       <div v-for="group in cptSocialGroups" class="group d-flex flex-row justify-content-around" :type="group.type">
         <a v-for="item in group.items" :href="item.link" class="link a-block" target="social">
@@ -96,7 +105,7 @@ Vue.component('w-footer', {
     <div class="other">
       <div v-for="item in common.footer.other" class="item"><a :href="item.link" class="a-text">{{ item.title }}</a></div>
     </div>
-    <a class="wo a-block" :href="common.home"><img src="asset/wo/full/black.png" /></a>
+    <a class="wo a-block" :href="common.home"><img :src="common.footer.wo.black" /></a>
   </footer>
   `
 });
@@ -104,7 +113,7 @@ Vue.component('w-support', {
   mixins: [mxCommon],
   template: `
   <div class="support">
-    <a class="button" :href="common.links.support" target="support"></a>
+    <a class="button" :style="common.support.style" :href="common.links.support" target="support"></a>
     <a class="close" href="#" @click.stop.prevent="close">×</a>
   </div>
   `,
