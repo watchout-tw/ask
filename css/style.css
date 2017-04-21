@@ -29,9 +29,12 @@
 /* Mixin */
 /* Bootstrap breakpoint */
 /* General override */
-h1, h2, h3 {
+h1, h2, h3, h4 {
   font-family: "noto-serif-patch", "source-han-serif-tc", serif;
   font-weight: bold; }
+
+h4 {
+  font-size: 1.125rem; }
 
 label {
   margin: 0; }
@@ -49,7 +52,7 @@ a.a-text {
     background-image: linear-gradient(to right, #4DEBDF 0%, #4DEBDF 100%);
     background-position: center;
     background-repeat: repeat-x;
-    background-size: 0.5em 0.25em;
+    background-size: 0.5em 0.5em;
     background-blend-mode: multiply; }
 a.a-block {
   display: block; }
@@ -57,7 +60,7 @@ a.a-block {
     background-image: linear-gradient(to right, #4DEBDF 0%, #4DEBDF 100%);
     background-position: center;
     background-repeat: repeat-x;
-    background-size: 0.5em 0.25em;
+    background-size: 0.5em 0.5em;
     background-blend-mode: multiply; }
 
 .close {
@@ -336,18 +339,23 @@ section#cover {
       .support > .button {
         width: 84px;
         height: 84px; } }
+  .support > .close {
+    top: auto;
+    bottom: -0.5rem; }
 
 footer {
-  margin-top: 100px;
+  margin-top: 6rem;
+  padding-bottom: 2rem;
   background: linear-gradient(to bottom, rgba(77, 235, 223, 0), #4debdf); }
   footer > .island, footer > .social, footer > .other {
     display: block;
     margin: 0 auto;
-    width: 100%;
+    width: 100%; }
+  footer > .island {
     max-width: 24rem; }
   footer > .social {
-    margin-top: 5rem;
-    margin-bottom: 5rem; }
+    padding: 6rem 0;
+    max-width: 20rem; }
     footer > .social > .group {
       margin: 2rem; }
       footer > .social > .group > .link > .image {
@@ -368,23 +376,15 @@ footer {
         font-family: "noto-serif-patch", "source-han-serif-tc", serif;
         font-weight: bold;
         font-size: 1.125rem;
-        color: #4a4a4a;
-        transform: translate(2rem, -0.5rem) rotate(-15deg); }
+        color: #4a4a4a; }
       footer > .social > .group[type="facebook"] > .link > .image > .type {
         background-image: url(../asset/social/facebook/round.png); }
       footer > .social > .group[type="LINE"] > .link > .image > .type {
         background-image: url(../asset/social/LINE/round.png); }
-  footer > .other > .item {
-    display: inline-block;
-    width: 50%;
-    margin: 0.5rem 0;
-    color: #4a4a4a;
-    text-align: center; }
-  footer > .wo {
-    width: 9rem;
-    margin: 0 auto;
-    padding: 2rem 0 6rem; }
-    footer > .wo > img {
-      width: 100%; }
+  footer > .cluster > .group {
+    margin: 0 2rem; }
+    footer > .cluster > .group > .item {
+      color: #4a4a4a;
+      text-align: left; }
 
 /*# sourceMappingURL=style.css.map */

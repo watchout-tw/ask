@@ -32,27 +32,45 @@ var CommonData = {
         link: 'https://store.line.me/stickershop/product/1224270/zh-Hant',
       },
     ],
-    other: [
+    cluster: [
       {
-        title: '2014 透明報告',
-        image: '',
-        link: 'http://watchout.tw/transparency/2014',
+        title: '沃草產品',
+        links: [
+          {
+            title: '國會無雙',
+            link: 'https://musou.tw/',
+          },
+          {
+            title: '給問擂台',
+            link: 'https://ask.watchout.tw/',
+          },
+          {
+            title: '公民學院',
+            link: 'https://citizenedu.tw/',
+          },
+        ],
       },
       {
-        title: '歷年影響力報告',
-        image: '',
-        link: 'http://watchout.tw/impact/',
+        title: '關於沃草',
+        links: [
+          {
+            title: '2014 透明報告',
+            link: 'https://watchout.tw/transparency/2014',
+          },
+          {
+            title: '歷年影響力報告',
+            link: 'https://watchout.tw/impact/',
+          },
+          {
+            title: '聯絡我們',
+            link: 'https://watchout.tw/contact',
+          },
+          {
+            title: '授權條款',
+            link: 'https://watchout.tw/license',
+          },
+        ],
       },
-      {
-        title: '聯絡我們',
-        image: '',
-        link: 'http://watchout.tw/contact',
-      },
-      {
-        title: '授權條款',
-        image: '',
-        link: 'http://watchout.tw/license',
-      }
     ],
     wo: {
       black: 'https://watchout.tw/asset/wo/full/black.png',
@@ -102,10 +120,12 @@ Vue.component('w-footer', {
         </a>
       </div>
     </div>
-    <div class="other">
-      <div v-for="item in common.footer.other" class="item"><a :href="item.link" class="a-text">{{ item.title }}</a></div>
+    <div class="cluster d-flex flex-row justify-content-center">
+      <div v-for="group in common.footer.cluster" class="group">
+        <h4>{{ group.title }}</h4>
+        <div v-for="item in group.links" class="item"><a :href="item.link" class="a-text">{{ item.title }}</a></div>
+      </div>
     </div>
-    <a class="wo a-block" :href="common.home"><img :src="common.footer.wo.black" /></a>
   </footer>
   `
 });
