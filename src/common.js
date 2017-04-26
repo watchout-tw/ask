@@ -97,7 +97,7 @@ Vue.component('w-footer', {
     },
     patchStyles: function(i) {
       return {
-        transform: 'translateX(' + (Math.round(Math.random())*2 - 1)*Math.round(Math.random()*16) + 'vw)',
+        transform: 'translateX(' + (Math.round(Math.random())*2 - 1)*Math.round(Math.random()*16) + 'rem)',
       };
     },
   },
@@ -125,8 +125,10 @@ Vue.component('w-footer', {
       <div class="patches d-flex align-items-end justify-content-between">
         <div v-for="i in patchCount()" class="patch" :class="patchSize()" :style="patchStyles(i)"></div>
       </div>
-      <img src="asset/footer/tree/speech.png" class="tree" />
-      <img src="asset/footer/farmer/tangerine.png" class="farmer" />
+      <img src="asset/footer/tree/speech.png" class="tree tree-speech" />
+      <img src="asset/footer/tree/discover.png" class="tree tree-discover" />
+      <img src="asset/footer/farmer/tangerine.png" class="farmer farmer-tangerine" />
+      <img src="asset/footer/farmer/green.png" class="farmer farmer-green" />
     </div>
     <div class="social">
       <div v-for="group in cptSocialGroups" class="group d-flex flex-row justify-content-around" :type="group.type">
