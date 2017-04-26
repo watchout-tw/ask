@@ -9,9 +9,6 @@ var CommonData = {
     },
   },
   footer: {
-    island: {
-      image: 'https://watchout.tw/asset/island.png',
-    },
     social: [
       {
         type: 'facebook',
@@ -90,6 +87,20 @@ var mxCommon = {
 };
 Vue.component('w-footer', {
   mixins: [mxCommon],
+  methods: {
+
+    patchCount: function() {
+      return 4 + Math.round(Math.random()*2);
+    },
+    patchSize: function() {
+      return Math.random() > 0.5 ? 'big' : 'small';
+    },
+    patchStyles: function(i) {
+      return {
+        transform: 'translateX(' + (Math.round(Math.random())*2 - 1)*Math.round(Math.random()*16) + 'vw)',
+      };
+    },
+  },
   computed: {
     cptSocialGroups: function() {
       var arr = this.common.footer.social;
@@ -108,7 +119,15 @@ Vue.component('w-footer', {
   },
   template: `
   <footer>
-    <img class="island" :src="common.footer.island.image" />
+    <div class="land">
+      <div class="grass"></div>
+      <div class="soil"><div class="light"></div><div class="dark"></div></div>
+      <div class="patches d-flex align-items-end justify-content-between">
+        <div v-for="i in patchCount()" class="patch" :class="patchSize()" :style="patchStyles(i)"></div>
+      </div>
+      <img src="asset/footer/tree/speech.png" class="tree" />
+      <img src="asset/footer/farmer/tangerine.png" class="farmer" />
+    </div>
     <div class="social">
       <div v-for="group in cptSocialGroups" class="group d-flex flex-row justify-content-around" :type="group.type">
         <a v-for="item in group.items" :href="item.link" class="link a-block" target="social">

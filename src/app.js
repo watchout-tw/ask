@@ -7,9 +7,16 @@ Vue.component('guest', {
       }
     }
   },
+  computed: {
+    styles: function() {
+      return {
+        photo: this.g.photo ? { backgroundImage: 'url(asset/guests/' + this.g.photo + ')' } : {}
+      }
+    },
+  },
   template: `
   <li class="guest">
-    <div class="photo"></div>
+    <div class="photo" :style="styles.photo"></div>
     <label class="name">{{ g.name }}</label>
     <label class="job">{{ g.job }}</label>
   </li>

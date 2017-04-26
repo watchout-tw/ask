@@ -2,6 +2,9 @@
 @import 'variables';
 
 /* General override */
+html, body {
+  font-size: 16px;
+}
 
 // Small element
 h1, h2, h3, h4 {
@@ -314,7 +317,8 @@ section {
     height: 0;
     padding-bottom: 100%;
     border-radius: 50%;
-    background: $color-placeholder;
+    background-color: $color-placeholder;
+    background-size: contain;
   }
   > .name, > .job {
     display: block;
@@ -412,15 +416,71 @@ section {
 footer {
   margin-top: 6rem;
   padding-bottom: 2rem;
-  background: linear-gradient(to bottom, rgba($color-ask, 0), rgba($color-ask, 100));
+  background: #3d3d3d;//linear-gradient(to bottom, rgba($color-ask, 0), rgba($color-ask, 100));
 
-  > .island, > .social, > .other {
+  > .land, > .social, > .other {
     display: block;
     margin: 0 auto;
     width: 100%;
   }
-  > .island {
-    max-width: 24rem;
+  > .land {
+    position: relative;
+    background-color: white;
+    > .grass, > .soil > .light, > .soil > .dark {
+      background-position: center;
+      background-size: contain;
+    }
+    > .grass {
+      height: 14rem;
+      background-image: url(../asset/footer/land/grass.png);
+      background-repeat: repeat-x;
+    }
+    > .soil {
+      > .light, > .dark {
+        height: 2rem;
+        background-repeat: no-repeat;
+      }
+      > .light {
+        background-color: #a04e3c;
+        background-image: url(../asset/footer/land/soil/light.png);
+      }
+      > .dark {
+        background-color: #7f4533;
+        background-image: url(../asset/footer/land/soil/dark.png);
+      }
+    }
+    > .patches {
+      position: absolute;
+      bottom: 6rem;
+      width: 100%;
+
+      > .patch {
+        background-size: contain;
+
+        &.big {
+          width: 1.375rem;
+          height: 1rem;
+          background-image: url(../asset/footer/grass/big.png);
+        }
+        &.small {
+          width: 0.625rem;
+          height: 0.5rem;
+          background-image: url(../asset/footer/grass/small.png);
+        }
+      }
+    }
+    > .tree {
+      position: absolute;
+      bottom: 6rem;
+      left: 25%;
+      width: 180px;
+    }
+    > .farmer {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 20%;
+      width: 74px;
+    }
   }
   > .social {
     padding: 6rem 0;
@@ -451,7 +511,7 @@ footer {
           @include font-serif;
           font-weight: bold;
           font-size: 1.125rem;
-          color: $color-nice-grey;
+          color: rgba(white, 0.75); //color-nice-grey;
           //ransform: translate(2rem, -0.5rem) rotate(-15deg);
         }
       }
@@ -466,10 +526,11 @@ footer {
   }
 
   > .cluster {
+    color: white;
     > .group {
       margin: 0 2rem;
       > .item {
-        color: $color-nice-grey;
+        color: rgba(white, 0.75); //$color-nice-grey;
         text-align: left;
       }
     }
