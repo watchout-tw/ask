@@ -209,11 +209,11 @@ section {
     height: 0;
     padding-bottom: 88.8888889%;
     @include placeholder;
-    background-image: url(../asset/opening+background-sq.png);
+    background-image: url(../asset/opening+background-sq.jpg);
 
     @include bp-sm-up {
       padding-bottom: 50%;
-      background-image: url(../asset/opening+background-wide.png);
+      background-image: url(../asset/opening+background-wide.jpg);
     }
   }
   &#now {
@@ -413,9 +413,9 @@ section {
 }
 
 footer {
-  margin-top: 6rem;
+  margin-top: 8rem;
   padding-bottom: 2rem;
-  background: #3d3d3d;//linear-gradient(to bottom, rgba($color-ask, 0), rgba($color-ask, 100));
+  background: #434343;
 
   > .land, > .social, > .other {
     display: block;
@@ -440,11 +440,11 @@ footer {
         background-repeat: no-repeat;
       }
       > .light {
-        background-color: #a04e3c;
+        background-color: #bd7260;
         background-image: url(../asset/footer/land/soil/light.png);
       }
       > .dark {
-        background-color: #7f4533;
+        background-color: #8c4533;
         background-image: url(../asset/footer/land/soil/dark.png);
       }
     }
@@ -472,16 +472,31 @@ footer {
     > .tree {
       position: absolute;
 
-      &.tree-speech {
-        bottom: 5.5rem;
+      &.tree-deliberate {
+        bottom: 5.25rem;
         left: 10%;
         width: 11.25rem;
       }
       &.tree-discover {
-        bottom: 4.5rem;
+        bottom: 5rem;
         left: 10%;
-        transform: translateX(7.5rem);
+        transform: translateX(6rem);
         width: 8.5rem;
+      }
+      &.tree-investigate {
+        display: none;
+        bottom: 5.5rem;
+        right: 10%;
+        width: 11.875rem;
+
+        @include bp-sm-up {
+          display: block;
+        }
+      }
+      &.tree-sprout {
+        bottom: 4rem;
+        right: 8%;
+        width: 1.25rem;
       }
     }
     > .farmer {
@@ -500,7 +515,7 @@ footer {
       &.farmer-brown {
         bottom: 4.5rem;
         left: 10%;
-        transform: translateX(16rem);
+        transform: translateX(14rem);
         width: 2rem;
       }
     }
