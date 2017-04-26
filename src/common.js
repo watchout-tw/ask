@@ -3,11 +3,6 @@ var CommonData = {
     home: 'https://watchout.tw/',
     support: 'https://watchout.tw/#support',
   },
-  support: {
-    style: {
-      backgroundImage: 'url(https://watchout.tw/asset/support.png)',
-    },
-  },
   footer: {
     social: [
       {
@@ -154,7 +149,7 @@ Vue.component('w-support', {
   mixins: [mxCommon],
   template: `
   <div class="support">
-    <a class="button" :style="common.support.style" :href="common.links.support" target="support"></a>
+    <a class="button" :href="common.links.support" target="support"></a>
     <a class="close" href="#" @click.stop.prevent="close">×</a>
   </div>
   `,

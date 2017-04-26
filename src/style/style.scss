@@ -389,27 +389,23 @@ section {
 }
 .support {
   position: fixed;
-  bottom: 12px;
-  right: 12px;
+  bottom: 0.25rem;
+  right: 0.25rem;
   z-index: 2;
 
   > .button {
     display: block;
-    width: 64px;
-    height: 64px;
+    width: 5.625rem;
+    height: 5.625rem;
     border-radius: 50%;
     background-size: contain;
-
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
-
-    @include bp-sm-up {
-      width: 84px;
-      height: 84px;
-    }
+    background-image: url(../asset/pitcher.png);
   }
   > .close {
     top: auto;
-    bottom: -0.5rem;
+    bottom: -0.25rem;
+    color: $color-watchout;
+    opacity: 0.75;
   }
 }
 
