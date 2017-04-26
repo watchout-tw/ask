@@ -124,6 +124,7 @@ Vue.component('w-footer', {
       <img src="asset/footer/tree/discover.png" class="tree tree-discover" />
       <img src="asset/footer/farmer/tangerine.png" class="farmer farmer-tangerine" />
       <img src="asset/footer/farmer/green.png" class="farmer farmer-green" />
+      <img src="asset/footer/farmer/brown.png" class="farmer farmer-brown" />
     </div>
     <div class="social">
       <div v-for="group in cptSocialGroups" class="group d-flex flex-row justify-content-around" :type="group.type">

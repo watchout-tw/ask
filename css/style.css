@@ -279,7 +279,7 @@ section#cover {
     padding-bottom: 100%;
     border-radius: 50%;
     background-color: rgba(0, 0, 0, 0.65);
-    background-size: contain; }
+    background-size: cover; }
   .guest > .name, .guest > .job {
     display: block; }
   .guest > .job {
@@ -308,7 +308,9 @@ section#cover {
     right: 0;
     bottom: 0;
     font-size: 0.875rem;
-    text-align: right; }
+    text-align: right;
+    background: white;
+    padding: 0 0.25rem; }
   .event-in-list .job {
     display: none; }
   .event-in-list .links > .link {
@@ -325,7 +327,8 @@ section#cover {
     padding-top: 1.5rem; }
     .event-in-list.guest-one .info {
       position: absolute;
-      top: 0; }
+      top: 0;
+      z-index: 1; }
 
 .support {
   position: fixed;
@@ -408,6 +411,11 @@ footer {
         bottom: -0.5rem;
         right: 8%;
         width: 5rem; }
+      footer > .land > .farmer.farmer-brown {
+        bottom: 4.5rem;
+        left: 10%;
+        transform: translateX(16rem);
+        width: 2rem; }
   footer > .social {
     padding: 6rem 0;
     max-width: 20rem; }

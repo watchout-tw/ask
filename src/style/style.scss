@@ -318,7 +318,7 @@ section {
     padding-bottom: 100%;
     border-radius: 50%;
     background-color: $color-placeholder;
-    background-size: contain;
+    background-size: cover;
   }
   > .name, > .job {
     display: block;
@@ -359,6 +359,8 @@ section {
     bottom: 0;
     font-size: $font-size-small;
     text-align: right;
+    background: white;
+    padding: 0 0.25rem;
   }
   .job {
     display: none;
@@ -384,6 +386,7 @@ section {
     .info {
       position: absolute;
       top: 0;
+      z-index: 1;
     }
   }
 }
@@ -493,6 +496,12 @@ footer {
         bottom: -0.5rem;
         right: 8%;
         width: 5rem;
+      }
+      &.farmer-brown {
+        bottom: 4.5rem;
+        left: 10%;
+        transform: translateX(16rem);
+        width: 2rem;
       }
     }
   }
