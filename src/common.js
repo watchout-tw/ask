@@ -3,7 +3,15 @@ var CommonData = {
     home: 'https://watchout.tw/',
     support: 'https://watchout.tw/#support',
   },
-  footer: {
+  wo: {
+    black: 'https://watchout.tw/asset/wo/full/black.png',
+    white: 'https://watchout.tw/asset/wo/full/white.png',
+  },
+};
+var footer = new Vue({
+  el: 'footer',
+  data: {
+    common: CommonData,
     social: [
       {
         type: 'facebook',
@@ -64,26 +72,8 @@ var CommonData = {
         ],
       },
     ],
-    wo: {
-      black: 'https://watchout.tw/asset/wo/full/black.png',
-      white: 'https://watchout.tw/asset/wo/full/white.png',
-    },
   },
-};
-var mxCommon = {
-  props: {
-    common: {
-      type: Object,
-      validator: function(data) {
-        return true;
-      }
-    }
-  },
-};
-Vue.component('w-footer', {
-  mixins: [mxCommon],
   methods: {
-
     patchCount: function() {
       return 4 + Math.round(Math.random()*2);
     },
@@ -98,7 +88,7 @@ Vue.component('w-footer', {
   },
   computed: {
     cptSocialGroups: function() {
-      var arr = this.common.footer.social;
+      var arr = this.social;
       var result = [];
       var types = {};
       for(var i = 0; i < arr.length; i++) {
@@ -138,7 +128,7 @@ Vue.component('w-footer', {
       </div>
     </div>
     <div class="cluster d-flex flex-row justify-content-center">
-      <div v-for="group in common.footer.cluster" class="group">
+      <div v-for="group in cluster" class="group">
         <h4>{{ group.title }}</h4>
         <div v-for="item in group.links" class="item"><a :href="item.link" class="a-text">{{ item.title }}</a></div>
       </div>
@@ -146,8 +136,11 @@ Vue.component('w-footer', {
   </footer>
   `
 });
-Vue.component('w-support', {
-  mixins: [mxCommon],
+var pitcher = new Vue({
+  el: '#pitcher',
+  data: {
+    common: CommonData,
+  },
   template: `
   <div class="support">
     <a class="button" :href="common.links.support" target="support"></a>
