@@ -134,6 +134,11 @@ Vue.component('event-with-player', {
 });
 Vue.component('event-with-signup', {
   mixins: [mxEvent],
+  computed: {
+    newline: function() {
+      return "\n";
+    },
+  },
   template: `
   <div class="event event-with-signup">
     <div class="container-fluid container-960">
@@ -145,7 +150,7 @@ Vue.component('event-with-signup', {
             <time-period :start="e.start" :end="e.end" class="time-large"></time-period>
           </div>
           <div class="description pgroup">
-            {{ e.description }}
+            <p v-for="paragraph in e.description.split(this.newline)">{{ paragraph }}</p>
           </div>
           <div v-if="!!e.organizers && e.organizers.length > 0" class="organizers">
             <ul class="list list-unstyled"><label>合作夥伴</label>
