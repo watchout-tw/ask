@@ -29,9 +29,6 @@
 /* Mixin */
 /* Bootstrap breakpoint */
 /* Page-specific styles */
-body {
-  background-image: url(../asset/demo.png); }
-
 section > .label {
   font-family: "Space Mono", monospace;
   position: relative;
