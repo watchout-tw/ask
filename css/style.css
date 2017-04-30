@@ -1,3 +1,7 @@
+/* Colors */
+/* Typography */
+/* Mixin */
+/* Bootstrap breakpoint */
 @keyframes animationFlicker {
   0% {
     opacity: 1; }
@@ -24,10 +28,6 @@
   -moz-animation: animationFlicker 2s infinite;
   animation: animationFlicker 2s infinite; }
 
-/* Colors */
-/* Typography */
-/* Mixin */
-/* Bootstrap breakpoint */
 /* Page-specific styles */
 section > .label {
   font-family: "Space Mono", monospace;
