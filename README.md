@@ -4,4 +4,4 @@
 
 ## 警告
 
-這個repo中隱藏著一個連到`watchout-tw.github.io/src/style`的蟲洞。這個repo與`watchout-tw.github.io`是兩個平行的repo。
+在`src/style`裡需要一個連到`watchout-tw.github.io/src/style`的蟲洞。這個repo必須與`watchout-tw.github.io`平行存在。
