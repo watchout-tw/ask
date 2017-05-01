@@ -64,11 +64,11 @@ section#cover {
   background-color: rgba(0, 0, 0, 0.65);
   background-size: cover;
   background-position: center center;
-  background-image: url(../asset/opening+background-sq.jpg); }
+  background-image: url(../asset/opening-compact-2.jpg); }
   @media (min-width: 576px) {
     section#cover {
       padding-bottom: 50%;
-      background-image: url(../asset/opening+background-wide.jpg); } }
+      background-image: url(../asset/opening-wide-2.jpg); } }
 @media (min-width: 576px) {
   section#now {
     padding-top: 2rem; }
