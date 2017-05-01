@@ -64,11 +64,15 @@ section#cover {
   background-color: rgba(0, 0, 0, 0.65);
   background-size: cover;
   background-position: center center;
-  background-image: url(../asset/opening-compact-2.jpg); }
+  background-image: url(../asset/opening-compact.jpg); }
   @media (min-width: 576px) {
     section#cover {
       padding-bottom: 50%;
-      background-image: url(../asset/opening-wide-2.jpg); } }
+      background-image: url(../asset/opening-regular.jpg); } }
+  @media (min-width: 992px) {
+    section#cover {
+      padding-bottom: 33.333333%;
+      background-image: url(../asset/opening-wide.jpg); } }
 @media (min-width: 576px) {
   section#now {
     padding-top: 2rem; }

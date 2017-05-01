@@ -56,11 +56,15 @@ section {
     height: 0;
     padding-bottom: 88.8888889%;
     @include placeholder;
-    background-image: url(../asset/opening-compact-2.jpg);
+    background-image: url(../asset/opening-compact.jpg);
 
     @include bp-sm-up {
       padding-bottom: 50%;
-      background-image: url(../asset/opening-wide-2.jpg);
+      background-image: url(../asset/opening-regular.jpg);
+    }
+    @include bp-lg-up {
+      padding-bottom: 33.333333%;
+      background-image: url(../asset/opening-wide.jpg);
     }
   }
   &#now {
