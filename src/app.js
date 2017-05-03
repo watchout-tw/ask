@@ -9,8 +9,15 @@ Vue.component('guest', {
   },
   computed: {
     styles: function() {
+      var photoURL = null;
+      if(!!this.g.photo) {
+        if(this.g.photo.indexOf('http') >= 0)
+          photoURL = this.g.photo + this.g.name + '.jpg';
+        else
+          photoURL = 'asset/guests/' + this.g.photo;
+      }
       return {
-        photo: this.g.photo ? { backgroundImage: 'url(asset/guests/' + this.g.photo + ')' } : {}
+        photo: photoURL ? { backgroundImage: 'url(' + photoURL + ')' } : {}
       }
     },
   },
