@@ -262,66 +262,67 @@ var app = new Vue({
 
       // Sort events by start time
       db.events.sort(function(a, b) {
-        return that.getEventStartTime(b) - that.getEventStartTime(a);
+        return that.getEventStartTime(b) - that.getEventStartTime(a); // sort date DESC
       });
-
+      
       // Join tables & sort events into groups
-      var time = { // helper variables
-        twoDays: 2*24*60*60,
-        now: Math.round(new Date().getTime()/1000),
-        start: 0,
-        end: 0,
-      };
+      var twoDays = 2*24*60*60;
+      var now = Math.round(new Date().getTime()/1000);
       var events = { // event groups
-        isLive: false,
-        now: null,
-        next: null,
+        live: -1,
+        soon: -1,
+        next: -1,
+        nextCandidates: [],
         history: [],
       };
       var matchID = function(element) { // helper function to match IDs
         return (this.id === element.id);
       };
       db.events.forEach(function(e, i) {
-        // join guests
+        // map guests
         if(!!e.guests && e.guests.length > 0) {
           e.guests = e.guests.map(function(id) {
             return db.guests.find(matchID, {id: id}); // send id to helper function
           });
         }
 
-        // join organizers
+        // map organizers
         if(!!e.organizers && e.organizers.length > 0) {
           e.organizers = e.organizers.map(function(id) {
             return db.partners.find(matchID, {id: id});
           });
         }
 
-        // sort according to time
-        time.start = that.getEventStartTime(e);
-        time.end = that.getEventEndTime(e);
-        if(time.now >= time.start && time.now <= time.end) { // live event
-          events.now = i;
-          events.isLive = true;
-        }
-        else if(time.now < time.start) { // future event
-          if(time.start - time.now <= time.twoDays) {
-            events.now = i;
-            events.isLive = false;
-          }
-          else {
-            events.next = i;
-          }
-        }
-        else {
+        // sort into event groups
+        e.time = {};
+        e.time.start = that.getEventStartTime(e);
+        e.time.end = that.getEventEndTime(e);
+
+        if(e.time.end < now) { // event has ended
           events.history.push(i);
         }
+        else { // event has not ended
+          if(e.time.start <= now) { // event has started
+            events.live = i;
+          }
+          else { // event has not started
+            events.nextCandidates.push(i);
+            if(e.time.start <= now + twoDays) {
+              events.soon = i;
+            }
+          }
+        }
       });
+      events.next = events.nextCandidates.pop();
+      if(events.next == events.soon && events.live == -1) {
+        events.next = events.next - 1;
+      }
 
       // set
       // https://vuejs.org/v2/guide/reactivity.html#Change-Detection-Caveats
-      this.$set(this.now, 'status', (events.isLive ? 'LIVE' : 'SOON'));
-      this.$set(this.now, 'event', (events.now != null ? db.events[events.now] : null));
-      this.$set(this.next, 'event', (events.next != null ? db.events[events.next] : null));
+      this.$set(this.now, 'status', (events.live > -1 ? 'LIVE' : 'SOON'));
+      this.$set(this.now, 'event', (events.live > -1 ? db.events[events.live] : events.soon > -1 ? db.events[events.soon] : null));
+      this.$set(this.next, 'event', (events.next > -1 > 0 ? db.events[events.next] : null));
       this.$set(this.history, 'events', events.history.map(function(k) {
         return db.events[k];
       }));
@@ -346,7 +347,7 @@ var app = new Vue({
       title: 'NOW',
     },
     next: {
-      title: '下一場給問',
+      title: '給問預告',
     },
     intro: {
       title: '什麼是給問？',
