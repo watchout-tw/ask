@@ -110,11 +110,15 @@ section {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 192px;
-      height: 192px;
+      width: 96px;
+      height: 96px;
       background-image: url(../asset/play.png);
       background-size: contain;
       cursor: pointer;
+      @include bp-sm-up {
+        width: 192px;
+        height: 192px;
+      }
     }
   }
 }
@@ -124,6 +128,9 @@ section {
     font-size: $font-size-small;
     font-weight: 500;
   }
+}
+.date, .time {
+  display: block;
 }
 .date {
   @include font-monospace;
@@ -193,6 +200,11 @@ section {
       background-position: center center;
       box-shadow: 0px 2px 6px $color-shadow;
     }
+  }
+}
+.event-with-signup {
+  h2 {
+    margin: 1rem 0;
   }
 }
 .event-in-list {

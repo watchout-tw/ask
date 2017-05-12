@@ -346,7 +346,7 @@ var app = new Vue({
       title: 'NOW',
     },
     next: {
-      title: 'NEXT',
+      title: '下一場給問',
     },
     intro: {
       title: '什麼是給問？',
