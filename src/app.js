@@ -145,6 +145,9 @@ Vue.component('event-with-signup', {
     newline: function() {
       return "\n";
     },
+    signupType: function() {
+      return this.e.type.indexOf('online') > -1 ? 'online' : '';
+    }
   },
   template: `
   <div class="event event-with-signup">
@@ -168,7 +171,7 @@ Vue.component('event-with-signup', {
         <div class="col-md col-lg-8">
           <div v-if="!!e.guests && e.guests.length > 0" class="guests">
             <ul class="list list-unstyled d-flex flex-row flex-wrap justify-content-center justify-content-md-start">
-              <guest v-for="g in e.guests" :key="g.name" :g="g"></guest><a class="guest signup" :href="e.signup" target="signup"><div class="photo"></div></a>
+              <guest v-for="g in e.guests" :key="g.name" :g="g"></guest><a class="guest signup" :class="signupType" :href="e.signup" target="signup"><div class="photo"></div></a>
             </ul>
           </div>
         </div>
@@ -264,7 +267,7 @@ var app = new Vue({
       db.events.sort(function(a, b) {
         return that.getEventStartTime(b) - that.getEventStartTime(a); // sort date DESC
       });
-      
+
       // Join tables & sort events into groups
       var twoDays = 2*24*60*60;
       var now = Math.round(new Date().getTime()/1000);
