@@ -93,13 +93,20 @@ var mxEvent = {
     }
   },
   computed: {
+    video: function() {
+      return {
+        youtube: this.e.youtube,
+        facebook: this.e.facebook,
+        livehousein: this.e.livehousein,
+      }[this.e.primary];
+    },
     youtubeID: function() {
-      return this.e.livestream.split('/').pop();
+      return this.e.youtube.split('/').pop();
     },
     player: function() {
       return {
         styles: {
-          backgroundImage: 'url(https://' + 'img.youtube.com/vi/' + this.youtubeID + '/maxresdefault.jpg)'
+          backgroundImage: 'url(asset/events/' + this.e.keyVisual + ')'
         },
       };
     },
@@ -133,8 +140,21 @@ Vue.component('event-with-player', {
   `,
   methods: {
     play: function(event) {
-      var url = 'https://www.youtube.com/embed/' + this.youtubeID + '?autoplay=1';
-      $('.player > .content').replaceWith('<iframe class="content embed-responsive-item" src="' + url + '" frameborder="0" allowfullscreen></iframe>');
+      var url, html;
+      if(this.e.primary == 'youtube') {
+        url = 'https://www.youtube.com/embed/' + this.youtubeID + '?autoplay=1';
+        html = '<iframe class="content embed-responsive-item" src="' + url + '" frameborder="0" allowfullscreen></iframe>';
+      }
+      else if(this.e.primary == 'facebook') {
+        url = this.e.facebook;
+        html = '<div id="fb-root"></div><script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6"; fjs.parentNode.insertBefore(js, fjs); }(document, "script", "facebook-jssdk"));</script>'
+          + '<div class="fb-video" data-href="' + url + '" data-allowfullscreen="true" data-width="960" style="position:absolute;top:0;"></div>';
+      }
+      else if(this.e.primary == 'livehousein') {
+        url = this.e.livehousein;
+        html = '<iframe width="960" height="350" src="' + url + '" frameborder="0" allowfullscreen></iframe>';
+      }
+      $('.player > .content').replaceWith(html);
       $('.player > .play').fadeOut();
     },
   }
@@ -213,7 +233,7 @@ Vue.component('event-in-list', {
       </ul>
     </div>
     <div class="links d-flex" :class="classes.links">
-      <a class="link a-block" v-if="e.livestream" :href="e.livestream" target="livestream"><div class="logo logo-small woo"></div><div class="label"><span class="a-target">直播</span></div></a>
+      <a class="link a-block" v-if="this.video" :href="this.video" target="video"><div class="logo logo-small woo"></div><div class="label"><span class="a-target">影片</span></div></a>
       <a class="link a-block" v-if="e.report" :href="e.report" target="report"><div class="logo logo-small musou"></div><div class="label"><span class="a-target">報導</span></div></a>
       <a class="link a-block" v-if="e.transcript" :href="e.transcript" target="transcript"><div class="icon icon-small transcript"></div><div class="label"><span class="a-target">逐字稿</span></div></a>
     </div>
