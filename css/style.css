@@ -128,7 +128,7 @@ section#cover {
   display: block; }
 
 .date {
-  font-family: "Space Mono", "noto-serif-patch", "source-han-serif-tc", monospace; }
+  font-family: "Space Mono", monospace; }
   .date > .date-separator {
     color: #4DEBDF; }
   .date.date-large {
@@ -139,7 +139,7 @@ section#cover {
       line-height: 1.875rem; }
 
 .time {
-  font-family: "Space Mono", "noto-serif-patch", "source-han-serif-tc", monospace; }
+  font-family: "Space Mono", monospace; }
   .time.time-large {
     font-size: 1.5rem;
     line-height: 1.875rem; }

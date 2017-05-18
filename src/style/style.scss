@@ -12,7 +12,7 @@ $sqrt-3: 1.732051;
 
 section {
   > .label {
-    @include font-monospace;
+    @include font-monospace-serif;
     position: relative;
     height: 3rem;
     margin: 0 auto;
