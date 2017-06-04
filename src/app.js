@@ -166,7 +166,7 @@ Vue.component('event-with-signup', {
       return "\n";
     },
     signupType: function() {
-      return this.e.type.includes('online') ? 'online' : '';
+      return !!this.e.type && this.e.type.includes('online') ? 'online' : '';
     }
   },
   template: `
