@@ -184,6 +184,12 @@ section#cover {
 .event-with-player h2, .event-with-signup h2 {
   margin: 1rem 0; }
 
+.event-with-signup .event-text {
+  margin: 0 1rem;
+  max-width: 18rem; }
+.event-with-signup .event-images {
+  max-width: 36rem; }
+
 .event-in-list {
   border-top: 4px rgba(77, 235, 223, 0.85) solid;
   margin-bottom: 2rem; }

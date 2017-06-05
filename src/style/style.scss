@@ -210,6 +210,15 @@ section {
     margin: 1rem 0;
   }
 }
+.event-with-signup {
+  .event-text {
+    margin: 0 1rem;
+    max-width: 18rem;
+  }
+  .event-images {
+    max-width: 36rem;
+  }
+}
 .event-in-list {
   border-top: 4px rgba($color-ask, 0.85) solid;
   margin-bottom: 2rem;
