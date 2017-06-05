@@ -188,6 +188,7 @@ section#cover {
   margin: 0 1rem;
   max-width: 18rem; }
 .event-with-signup .event-images {
+  margin: 1rem;
   max-width: 36rem; }
 
 .event-in-list {
